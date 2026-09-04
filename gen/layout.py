@@ -6,7 +6,7 @@ from .html import esc
 
 VERSION = "dev"  # replaced by build.py with a content hash for cache busting
 
-FONTS = "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap"
+FONTS = "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Inter:wght@400;500;600;700&display=swap"
 
 
 def abs_url(path):
