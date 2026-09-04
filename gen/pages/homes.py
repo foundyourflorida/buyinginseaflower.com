@@ -74,6 +74,7 @@ Quick move-in homes have the options already in them, so their price is closer t
   {speakable(intro)}
   <div class="page-hero__meta">{updated_badge()}<span>Sortable. Filter by builder.</span></div>
   {independent_note("Plan names and prices belong to the builders and are quoted for identification and comparison.")}
+  {photo_banner("model-home", "Front porches, alley garages and coastal elevations define the village streets (photo courtesy of the builder)")}
 </div></section>
 
 <section class="section section--flush-top reveal" id="plans"><div class="container">

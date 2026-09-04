@@ -6,7 +6,15 @@ from ..content.videos import by_id
 from ..html import esc, md
 
 
+POST_PHOTOS = {"golf-carts-at-seaflower": "golf-cart", "the-garden-club-seaflower-amenity-center": "resort-pool", "seaflower-village-center-publix": "event-lawn-evening",
+               "seaflower-site-plan-phases-explained": "aerial-lake-flores", "history-of-seaflower-preston-farm-lake-flores": "aerial-lake-flores", "rear-load-vs-front-load-lots-seaflower": "model-home",
+               "hurricane-preparedness-new-seaflower-home": "model-home", "adus-garage-apartments-seaflower": "model-home", "honest-pros-and-cons-of-buying-in-seaflower": "aerial-lake-flores",
+               "seaflower-vs-lakewood-ranch": "aerial-lake-flores", "seaflower-vs-wellen-park-vs-parrish": "golf-cart", "moving-to-west-bradenton": "golf-cart", "second-home-seasonal-buying-seaflower": "resort-pool",
+               "seaflower-construction-timeline": "event-lawn-evening", "manatee-county-growth-and-seaflower": "aerial-lake-flores", "new-construction-inspections-seaflower": "model-home", "design-center-strategy-seaflower": "plumeria-hall"}
+
+
 def post_page(p, others):
+    ph = POST_PHOTOS.get(p["slug"])
     try:
         v = by_id(p["video"]) if p.get("video") else None
     except Exception:
@@ -20,6 +28,7 @@ def post_page(p, others):
   <p class="lead">{esc(p['excerpt'])}</p>
   <div class="post-meta" style="margin-top:18px"><img src="{SITE['headshot']}" alt="" width="36" height="36"><span>By <a href="/about/">{SITE['agent_credentials']}</a></span><span>{esc(p['date_display'])}</span><span>{updated_badge()}</span></div>
   {independent_note()}
+  {photo_banner(ph) if ph else ''}
 </div></section>
 
 <section class="section section--flush-top"><div class="container container--narrow">
@@ -36,11 +45,11 @@ def post_page(p, others):
 """
     schema = [breadcrumb_schema([("Home", "/"), ("Blog", "/blog/"), (p["title"], f"/blog/{p['slug']}/")]),
               {"@type": "BlogPosting", "@id": SITE["domain"] + f"/blog/{p['slug']}/#post", "headline": p["title"], "description": p["excerpt"],
-               "image": SITE["domain"] + SITE["og_default"], "author": {"@id": SITE["domain"] + "/#trenton"}, "publisher": {"@id": SITE["domain"] + "/#org"},
+               "image": SITE["domain"] + (photo_src(ph) if ph else SITE["og_default"]), "author": {"@id": SITE["domain"] + "/#trenton"}, "publisher": {"@id": SITE["domain"] + "/#org"},
                "datePublished": p["date"], "dateModified": p["date"], "mainEntityOfPage": SITE["domain"] + f"/blog/{p['slug']}/", "about": {"@id": SITE["domain"] + "/#seaflower"},
                "articleSection": p["category"], "inLanguage": "en-US"}]
     return dict(path=f"/blog/{p['slug']}/", title=p["title"], description=p["excerpt"], body=body, schema=schema, type="article", published=p["date"], modified=p["date"],
-                priority="0.7", changefreq="monthly", nav="/blog/")
+                priority="0.7", changefreq="monthly", nav="/blog/", og_image=(photo_src(ph) if ph else None))
 
 
 def index_page():

@@ -42,9 +42,10 @@ def pages():
         ("An ADU on every single-family lot", "Garage apartments and detached casitas are allowed on every single-family homesite, an unusual county approval. That means a guest suite, a home office, or a rental income line, with a one-year owner-occupancy rule before renting.", "key"),
         ("Three miles from the Gulf", "Anna Maria Island and Bradenton Beach are a short drive, Longboat Key under ten miles, Sarasota and Tampa within an hour, and IMG Academy is next door.", "umbrella"),
     ]
-    why_cards = "".join(f'<div class="card"><div class="card__icon">{icon(i)}</div><h3>{t}</h3><p>{b}</p></div>' for t, b, i in why)
+    why_photos = {"trees": "golf-cart", "key": "model-home", "umbrella": "aerial-lake-flores"}
+    why_cards = "".join(f'<div class="card why-card"><div class="card__media">{photo(why_photos[i], small=True)}</div><div class="card__body"><h3>{t}</h3><p>{b}</p></div></div>' for t, b, i in why)
     body = f"""
-<section class="hero"><div class="container hero__inner">
+<section class="hero hero--photo" style="background-image:url({photo_src('aerial-lake-flores')})"><div class="container hero__inner">
   <div>
     {eyebrow("Independent buyer&rsquo;s guide · Bradenton, Florida")}
     <h1>Buying in SeaFlower? <em>Start with someone who used to run it.</em></h1>
@@ -138,5 +139,5 @@ def pages():
         path="/", title="SeaFlower Bradenton Buyer's Guide: Builders, Prices, HOA and CDD Fees (2026)", title_full=False,
         description="The independent guide to buying in SeaFlower, Bradenton FL: all five builders compared, 60+ floor plans and prices, HOA and Lake Flores CDD fees, location, videos and 60+ buyer questions, from a former David Weekley operations manager who now represents buyers.",
         body=body, schema=schema, priority="1.0", changefreq="weekly", nav="/",
-        og_image=f"https://i.ytimg.com/vi/{hero_video['id']}/maxresdefault.jpg",
+        og_image=photo_src("aerial-lake-flores"),
     )]

@@ -129,6 +129,7 @@ def pages():
   {speakable(intro)}
   <div class="page-hero__meta">{updated_badge()}<span>Drive times as published by the builders, off-peak</span></div>
   {independent_note()}
+  {photo_banner("aerial-lake-flores", "Looking west over Lake Flores toward Anna Maria Island and the Gulf (rendering courtesy of the developer)", cls="photo-banner--tall")}
 </div></section>
 
 <section class="section section--flush-top reveal" id="map"><div class="container">

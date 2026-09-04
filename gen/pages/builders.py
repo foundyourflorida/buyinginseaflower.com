@@ -230,6 +230,7 @@ def index_page():
   {speakable(intro)}
   <div class="page-hero__meta">{updated_badge()}<span>Two of these five builders I worked for directly.</span></div>
   {independent_note()}
+  {photo_banner("model-home", "A coastal-style single-family home in SeaFlower (photo courtesy of the builder)")}
 </div></section>
 
 <section class="section section--flush-top reveal"><div class="container">

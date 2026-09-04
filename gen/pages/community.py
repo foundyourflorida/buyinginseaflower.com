@@ -62,6 +62,7 @@ def pages():
   {speakable(INTRO)}
   <div class="page-hero__meta">{updated_badge()}<span>Welcome Center: {esc(F.COMMUNITY['welcome_center']['address'])} · {esc(F.COMMUNITY['welcome_center']['phone'])}</span></div>
   {independent_note()}
+  {photo_banner("resort-pool", "The Garden Club resort pool on Lake Flores (rendering courtesy of the developer)", cls="photo-banner--tall")}
 </div></section>
 
 <section class="section section--flush-top reveal" id="at-a-glance"><div class="container">
@@ -73,6 +74,7 @@ def pages():
     <div class="prose">{md(STORY)}</div>
 
     <h2 id="master-plan" style="margin-top:2.2em">Master plan and phases</h2>
+    {photo_banner("aerial-lake-flores", "Phase One around Lake Flores, looking west to the Gulf (rendering courtesy of the developer)")}
     <p class="lead">Phase One is 1,063 homes in four sub-phases around Lake Flores. As of April 2026, 784 of those homesites had been released, with 400 lots finished and 384 more under construction through 2026. Phase Two is expected to start around 2027.</p>
     <div class="grid grid-2" style="align-items:start">
       <div>{table(["Phase", "Product", "Lots"], [(p, prod, n) for p, prod, n, w in F.LOT_MIX], numeric_cols=(2,), note="Lot counts from the Lake Flores CDD FY2027 assessment roll. Phase 1C is financed by the Series 2026 bonds, which is why its CDD assessment is higher.")}</div>
@@ -86,12 +88,14 @@ def pages():
     <div class="lot-grid">{ladder}</div>
 
     <h2 id="amenities" style="margin-top:2.2em">The Garden Club, Lake Flores and the trail</h2>
+    {photo_grid(["resort-pool", "fitness-center", "plumeria-hall", "gathering-hall", "fitness-studio"], ["The Garden Club resort pool on Lake Flores", "The fitness center", "Plumeria Hall, the resident lounge", "The Gathering Hall for events and clubs", "Fitness studio opening onto the lawn"])}
     <p class="lead">The Garden Club is the resident-only amenity campus designed by LRK on the shore of the 25-acre Lake Flores Park. It broke ground July 9, 2025 and is scheduled to open in fall 2026. An Art of Living Director programs the calendar.</p>
     <div class="amenity-list">{amen}</div>
     <p style="margin-top:18px">Around it: the {esc(F.COMMUNITY['lake'])}, the {esc(F.COMMUNITY['trail'])}, a nature trail through the wetland and upland preserves, two dog parks, pocket parks and a village green. The trail is maintained by the community development district; the Garden Club by the HOA.</p>
     {callout("The clubhouse portion of the HOA assessment is abated until The Garden Club is substantially complete. Budget for the monthly fee to step up after opening. Details on the <a href='/costs/'>costs and fees page</a>.", "info", "Fee note")}
 
     <h2 id="village-center" style="margin-top:2.2em">SeaFlower Village Center</h2>
+    {photo_banner("event-lawn-evening", "The event lawn at dusk (rendering courtesy of the developer)")}
     <p class="lead">{esc(F.VILLAGE_CENTER['size'])}, developed by {esc(F.VILLAGE_CENTER['developers'])}. Anchored by {esc(F.VILLAGE_CENTER['anchor'])}. {esc(F.VILLAGE_CENTER['timeline'])}.</p>
     <div class="tenant-chips">{tenants}</div>
     <p class="note" style="margin-top:12px">Also planned: {esc(F.VILLAGE_CENTER['apartments'])}; {esc(F.VILLAGE_CENTER['hotel'])}. Tenant list as announced by the developer and CASTO; openings are staggered.</p>

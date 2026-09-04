@@ -55,6 +55,7 @@ def pages():
     <h1>Which SeaFlower home actually fits you?</h1>
     <p class="lead">Answer five quick questions and get a personalized match: the builders and lot types that fit your budget, the real monthly number with HOA, CDD and taxes, and insider notes from someone who used to run this community. The full Buyer&rsquo;s Guide comes with it, free.</p>
     <div class="trust-row"><span>{icon('check')} Every builder, priced as published</span><span>{icon('check')} HOA + CDD + taxes, by lot</span><span>{icon('check')} From a former David Weekley operations manager</span></div>
+    <div class="photo-grid mt-4" style="grid-template-columns:repeat(3,1fr)"><figure class="photo-grid__item" style="grid-column:auto">{photo("aerial-lake-flores", small=True)}</figure><figure class="photo-grid__item">{photo("resort-pool", small=True)}</figure><figure class="photo-grid__item">{photo("model-home", small=True)}</figure></div>
     <div class="guide-preview mt-4"><img src="/assets/images/guide-cover.jpg" alt="The SeaFlower Buyer's Guide cover" width="260" height="338" loading="lazy"><div><p class="eyebrow" style="margin-bottom:8px">Included with your match</p><h3 style="font-size:24px;margin-bottom:8px">The SeaFlower Buyer&rsquo;s Guide, 2026 edition</h3><ul class="checklist" style="font-size:15px"><li>All five builders, 62 plans, prices and lot sizes</li><li>The Lake Flores CDD table by phase and lot</li><li>Incentive and contract negotiation checklist</li><li>Out-of-state buying timeline</li></ul></div></div>
   </div>
   <div class="quiz" id="quiz">

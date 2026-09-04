@@ -199,7 +199,7 @@ def cta_band(title=None, text=None, primary=None, secondary=None, note=None, eye
     primary = primary or btn("Book a free strategy call", SITE["booking_page"], "coral", "lg", "calendar", cta="cta-band-book")
     secondary = secondary or btn(f"Text {SITE['phone_display']}", f"sms:{SITE['phone_e164']}", "outline-light", "lg", "message", cta="cta-band-text")
     note = note or f"Buyer representation is by written agreement and commissions are negotiable; on new construction the builder typically pays it, so it does not raise your price. {SITE['agent']}, {SITE['brokerage']}."
-    return (f'<div class="cta-band"><div class="cta-band__inner"><div>{eyebrow(eyebrow_text)}<h2>{title}</h2><p>{text}</p></div>'
+    return (f'<div class="cta-band cta-band--photo" style="background-image:url({photo_src("event-lawn-evening")})"><div class="cta-band__inner"><div>{eyebrow(eyebrow_text)}<h2>{title}</h2><p>{text}</p></div>'
             f'<div class="cta-band__actions">{primary}{secondary}<span class="cta-band__note">{note}</span></div></div></div>')
 
 
@@ -351,3 +351,40 @@ def speakable(html_text):
 
 def brokerage_tag():
     return f'<span class="brokerage-tag">{esc(SITE["agent"])} &middot; {esc(SITE["brokerage"])}</span>'
+
+
+PHOTOS = {
+    "model-home": ("A new coastal-style single-family home in SeaFlower with a white front porch and palm trees", "Photo courtesy of the builder"),
+    "golf-cart": ("Residents riding a golf cart along a SeaFlower street beside a pond", "Photo courtesy of the developer"),
+    "fitness-center": ("Rendering of The Garden Club fitness center with treadmills, bikes and tall windows", "Rendering courtesy of the developer"),
+    "gathering-hall": ("Rendering of The Garden Club gathering hall with vaulted beams and round tables", "Rendering courtesy of the developer"),
+    "plumeria-hall": ("Rendering of Plumeria Hall, the resident lounge at The Garden Club", "Rendering courtesy of the developer"),
+    "fitness-studio": ("Rendering of the fitness studio at The Garden Club opening onto a lawn", "Rendering courtesy of the developer"),
+    "event-lawn-evening": ("Rendering of the SeaFlower event lawn at dusk with lit palm trees", "Rendering courtesy of the developer"),
+    "aerial-lake-flores": ("Aerial rendering of SeaFlower around Lake Flores with the Gulf of Mexico on the horizon", "Rendering courtesy of the developer"),
+    "resort-pool": ("Rendering of The Garden Club resort pool with lap lanes beside Lake Flores", "Rendering courtesy of the developer"),
+}
+
+
+def photo_src(name, small=False):
+    return f"/assets/images/photos/{name}{'-900' if small else ''}.jpg"
+
+
+def photo(name, cls="", small=False, lazy=True):
+    alt, credit = PHOTOS[name]
+    return f'<img class="{cls}" src="{photo_src(name, small)}" alt="{esc(alt)}" loading="{"lazy" if lazy else "eager"}" decoding="async">'
+
+
+def photo_banner(name, caption=None, cls=""):
+    alt, credit = PHOTOS[name]
+    cap = caption or credit
+    return f'<figure class="photo-banner {cls}">{photo(name)}<figcaption>{esc(cap)}</figcaption></figure>'
+
+
+def photo_grid(names, captions=None):
+    items = ""
+    for i, n in enumerate(names):
+        alt, credit = PHOTOS[n]
+        cap = (captions[i] if captions and i < len(captions) else "") or alt.replace("Rendering of ", "").replace("Photo of ", "")
+        items += f'<figure class="photo-grid__item">{photo(n, small=True)}<figcaption>{esc(cap)}</figcaption></figure>'
+    return f'<div class="photo-grid">{items}</div><p class="note" style="margin-top:10px">Renderings and photos courtesy of the developer and builders; final construction may differ.</p>'
