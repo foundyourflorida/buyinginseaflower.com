@@ -54,6 +54,9 @@ def tidy(v, n=18):
 
 def short_note(p):
     n = re.sub(r"Plan #[A-Z0-9]+\.?\s*", "", p.get("notes", "") or "").split(".")[0].strip()
+    if re.search(r"DWH|hidden card|Sq ft range|inferred|verif|page says|marketing", n, re.I):
+        return ""
+    n = n.replace("'", "").replace('"', "")
     return n[:58] + ("…" if len(n) > 58 else "")
 
 

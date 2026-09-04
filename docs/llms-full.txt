@@ -782,7 +782,7 @@ Home
  Plan Base price Sq ft Stories Beds Baths Garage 
  Carmel Foyer to kitchen with island and stainless appliances; ope… On request 1,694 2 3 2 + 1 half 2-car rear load Plan 
  Bay Harbor Great room at entry; kitchen with center island and cafe o… On request 1,698 2 3 2 + 1 half 2-car rear load Plan 
- Annapolis First-floor owner's suite (walk-in closet, dual-vanity bat… On request 2,406 2 3 + loft 2 + 1 half 2-car rear load Plan 
+ Annapolis First-floor owners suite (walk-in closet, dual-vanity bath… On request 2,406 2 3 + loft 2 + 1 half 2-car rear load Plan 
 
  Quick move-in homes
 
@@ -1021,7 +1021,7 @@ Home
  Contour Formal entry, and stunning kitchen which features a large … $404,990 1,405+ 1 2 2 2-car Plan 
  Flagstone Versatile flex room offers the flexibility of a den, home … $429,990 1,518+ 1 2–3 2 + 0–1 half 2-car Plan 
  Hallmark Flex room off of the café can be an office or den $429,990 1,655+ 1 2–3 2 2-car Plan 
- Seaport Private downstairs owner's suite and two additional upstai… $480,990 2,060 2 3 2 + 1 half 2-car Plan 
+ Seaport Private downstairs owners suite and two additional upstair… $480,990 2,060 2 3 2 + 1 half 2-car Plan 
 
  Veranda · unverified · $439,990+ 
  4 plans on unverified homesites, $439,990+. Base prices as published by the builder; collection page .
@@ -1035,14 +1035,14 @@ Home
  2 plans on unverified homesites, $514,990+. Base prices as published by the builder; collection page .
  Plan Base price Sq ft Stories Beds Baths Garage 
  Arbordale II Spacious open concept kitchen, café, and gathering room; o… $514,990 1,980+ 1 3 2 2-car Plan 
- Mabel II with ADU Pulte: "Mabel II home design features 4 bedrooms, 3 baths,… $641,990 2,341+ 2 5 4 2-car Plan 
+ Mabel II with ADU Pulte: Mabel II home design features 4 bedrooms, 3 baths, … $641,990 2,341+ 2 5 4 2-car Plan 
 
  Distinctive · unverified · $579,990+ 
  3 plans on unverified homesites, $579,990+. Base prices as published by the builder; collection page .
  Plan Base price Sq ft Stories Beds Baths Garage 
  Coral Versatile floor plan accommodating 2-3 bedrooms; open kitc… $579,990 1,935 1 2–3 2 2-car Plan 
- Prestige Dual walk-in closets in the owner's suite and a private en… $599,990 2,080+ 1 2–3 2 + 1 half 2-car Plan 
- Burbank Flex room and a private Owner's Suite on the first floor $639,990 2,369+ 2 3–4 2–3 + 1 half 2-car Plan 
+ Prestige Dual walk-in closets in the owners suite and a private en … $599,990 2,080+ 1 2–3 2 + 1 half 2-car Plan 
+ Burbank Flex room and a private Owners Suite on the first floor $639,990 2,369+ 2 3–4 2–3 + 1 half 2-car Plan 
 
  Quick move-in homes
 
@@ -1264,8 +1264,8 @@ Home
  Bungalow Homes · 45' · From the $500s 
  4 plans on 45' homesites, from the $500s. Base prices as published by the builder; collection page .
  Plan Base price Sq ft Stories Beds Baths Garage 
- The Malone Study, lanai, Owner's Retreat $469,990 1,615 1 2–3 2 2-car Plan 
- The Bellmeade Model home (opened July 8, 2025 at 7650 Seaflower Parkway)… $485,990 1,791–1,839 1 3 2 2–3 car Plan 
+ The Malone Study, lanai, Owners Retreat $469,990 1,615 1 2–3 2 2-car Plan 
+ The Bellmeade $485,990 1,791–1,839 1 3 2 2–3 car Plan 
  The Ambrosia Study and lanai $507,990 1,958 1 3 2 2-car Plan 
  The Marina Only two-story Bungalow plan; front study, oversized pantr… $532,990 2,193 2 4 3 2-car Plan 
 
@@ -1273,9 +1273,9 @@ Home
  8 plans on 60' homesites, from the $600s. Base prices as published by the builder; collection page .
  Plan Base price Sq ft Stories Beds Baths Garage 
  The Blairmore $624,990 2,343–3,172 1 4–5 2–3 + 1 half 2–3 car Plan 
- The Cecelia Front study, 'quiet retreat' $654,990 2,642–3,416 1 4–5 3–4 3-car Plan 
- The Borrelli Guest suite with private bath behind the kitchen ('multige… $664,990 2,506 1 4 3 2-car Plan 
- The Wagoner Sq ft range shown exactly as DWH lists it ('2702 - 2697') $679,990 2,702–2,697 1 4 3 3-car Plan 
+ The Cecelia Front study, quiet retreat $654,990 2,642–3,416 1 4–5 3–4 3-car Plan 
+ The Borrelli Guest suite with private bath behind the kitchen (multigen… $664,990 2,506 1 4 3 2-car Plan 
+ The Wagoner $679,990 2,702–2,697 1 4 3 3-car Plan 
  The Rubytail Model home (opened Aug 27, 2025 at 7635 Addison Avenue) wi… $689,990 2,850–2,992 1 4 3 + 1 half 2-car Plan 
  The Bonham Jack-and-Jill bath, guest bedroom near garage, hide-away p… $694,990 2,882 1 4 3–4 + 0–1 half 3-car Plan 
  The Del Ray Two studies flanking the entry plus a TV room $699,990 3,022–3,777 1 4–5 3–4 2–3 car Plan 
@@ -1503,17 +1503,17 @@ Home
  Plan Base price Sq ft Stories Beds Baths Garage 
  Lido Lowest-priced Cardel plan at SeaFlower $579,990 1,909 1 3–4 2 2-car front Plan 
  Coral MODEL HOME at 7636 Highgrove Ave $598,990 2,048 1 3–4 2–3 2-car front Plan 
- Coquina Bonus room; option 'Fourth Bedroom With Bath Replaces Bonu… $619,990 2,245 1 3–4 2–3 2-car front Plan 
+ Coquina Bonus room; option Fourth Bedroom With Bath Replaces Bonus… $619,990 2,245 1 3–4 2–3 2-car front Plan 
  Marina Largest Cottage front-garage plan; a true two-story with p… $709,990 2,614 2 4–5 3.5–4 + 0–1 half 2-car front Plan 
 
  Cottage Homes – 50' rear garage · 50' · Starting from $589,990 
  5 plans on 50' homesites, starting from $589,990. Base prices as published by the builder; collection page .
  Plan Base price Sq ft Stories Beds Baths Garage 
  Bora Smallest Cardel plan $589,990 1,900 1 + 3–4 2–3 2-car rear Plan 
- Westerly 'Opt $604,990 2,014 1 + 4–5 2–4 2-car rear Plan 
+ Westerly Opt $604,990 2,014 1 + 4–5 2–4 2-car rear Plan 
  Bali MODEL HOME at 4525 Flower Fields Trail, built with the sui… $609,990 2,241 1 + 3–4 3–4 2-car rear Plan 
- Sea Breeze 'Optional Upper Garage Suite' (no square-footage figure sh… $649,990 2,450 2 + 4–5 3–4 2-car rear Plan 
- Tradewind Prep kitchen and pantry option; 'Optional Upper Garage Sui… $659,990 2,555 2 + 4–5 3–4 2-car rear Plan 
+ Sea Breeze Optional Upper Garage Suite (no square-footage figure show… $649,990 2,450 2 + 4–5 3–4 2-car rear Plan 
+ Tradewind Prep kitchen and pantry option; Optional Upper Garage Suit… $659,990 2,555 2 + 4–5 3–4 2-car rear Plan 
 
  Classic Homes – 60' front garage · 60' · Starting from $667,990 
  6 plans on 60' homesites, starting from $667,990. Base prices as published by the builder; collection page .
@@ -1522,15 +1522,15 @@ Home
  Cove Bonus room with dry-bar option; Coastal front-porch / Farm… $681,990 2,325 1 3 3 2-car front Plan 
  Palma MODEL HOME at 7644 Highgrove Ave $691,990 2,606 1 4–5 3–4 2-car front Plan 
  Harbor Largest single-story Classic; prep kitchen, wet bar, bonus… $716,990 2,840 1 4 4 2-car front Plan 
- Cove 2.0 Plan list shows the 'OPTIONAL ABOVE GARAGE APARTMENT' badg… $791,990 3,160 2 4 4 2-car front Plan 
+ Cove 2.0 Plan list shows the OPTIONAL ABOVE GARAGE APARTMENT badge,… $791,990 3,160 2 4 4 2-car front Plan 
  Seaside 2.0 Largest Cardel plan by square footage $791,990 3,172 2 4–5 4 2-car front Plan 
 
  Classic Homes – 60' rear garage · 60' · Starting from $726,990 
  4 plans on 60' homesites, starting from $726,990. Base prices as published by the builder; collection page .
  Plan Base price Sq ft Stories Beds Baths Garage 
- Crescent 'Garage Suite +800 SQFT'; pool bath; prep kitchen and pant… $726,990 2,454 1 + 3–4 2.5–3.5 + 1 half 2-car rear Plan 
+ Crescent Garage Suite +800 SQFT; pool bath; prep kitchen and pantry… $726,990 2,454 1 + 3–4 2.5–3.5 + 1 half 2-car rear Plan 
  Daybreak MODEL HOME and sales center at 4521 Flower Fields Trail $736,990 2,792 1 + 3–4 2.5–3.5 + 1 half 2-car rear Plan 
- Eventide Upper-floor railing and wet-bar options; 'Optional Garage … $807,990 3,055 2 + 4–5 3.5–4.5 + 1 half 2-car rear Plan 
+ Eventide Upper-floor railing and wet-bar options; Optional Garage S… $807,990 3,055 2 + 4–5 3.5–4.5 + 1 half 2-car rear Plan 
  Sunrise Highest base price of any Cardel plan at SeaFlower $811,990 3,122 2 + 4–5 2.5–3.5 + 1 half 2-car rear Plan 
 
  Quick move-in homes
@@ -1747,8 +1747,8 @@ Home
  7 plans on 80' homesites, base pricing starting at $1.29 million, . Base prices as published by the builder; collection page .
  Plan Base price Sq ft Stories Beds Baths Garage 
  Addison Study On request 2,905 sq ft A/C 1 3 2 + 1 half 2-Car Garage w/ Plan 
- Preston Study (Mar 2025 release: "3 Beds, 3 On request 2,915 sq ft A/C 1 3 3 + 1 half 2-Car Garage w/ Plan 
- Kingston "Kingston (3,084 SF living): 3 Beds, 3 Baths + Club Room, … On request 3,084 sq ft livi unv 3 3 + unve half unverified Plan 
+ Preston Study (Mar 2025 release: 3 Beds, 3 On request 2,915 sq ft A/C 1 3 3 + 1 half 2-Car Garage w/ Plan 
+ Kingston Kingston (3,084 SF living): 3 Beds, 3 Baths + Club Room, w… On request 3,084 sq ft livi unv 3 3 + unve half unverified Plan 
  Hemingway (2-Car Garage) West Indies elevation On request 3,264 sq ft A/C 1 3 3 + 1 half 2-Car Garage w/ Plan 
  Hemingway (3-Car Garage) Study and Clubroom On request 3,474 sq ft A/C 1 3 3 + 1 half 3-Car Garage Plan 
  Flagler Coastal elevation On request 3,725 sq ft A/C 2 4 4 + 1 half 3-Car Garage Plan 
@@ -1761,8 +1761,8 @@ Home
  Hatteras Coastal elevation (Study + Club Room; brochure dated 05/29… On request 3,474 sq ft A/C 1 3 3 + 1 half 3-Car Garage Plan 
  Key West Coastal elevation On request 3,755 sq ft A/C 2 4 4 + 1 half 3-Car Garage Plan 
  Key West – Garage Apartment Coastal elevation with garage apartment (ADU) On request 4,503 sq ft A/C 2 5 5 + 1 half 3-Car Garage Plan 
- Palm Beach "Coming Soon" (Preserve launch post, Aug 15 2026); no spec… On request unverified unv unverifi unverified + unve half unverified Plan 
- Sanibel "Coming Soon" (Preserve launch post, Aug 15 2026); a Sanib… On request unverified unv unverifi unverified + unve half unverified Plan 
+ Palm Beach Coming Soon (Preserve launch post, Aug 15 2026); no specif… On request unverified unv unverifi unverified + unve half unverified Plan 
+ Sanibel Coming Soon (Preserve launch post, Aug 15 2026); a Sanibel… On request unverified unv unverifi unverified + unve half unverified Plan 
 
  Quick move-in homes
 
