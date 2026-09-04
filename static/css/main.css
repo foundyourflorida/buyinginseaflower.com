@@ -493,7 +493,7 @@ tr[hidden]{display:none}
 .page-hero .container:not(:has(.split)){max-width:1040px;text-align:center}
 .page-hero .container:not(:has(.split)) .breadcrumb ol{justify-content:center}
 .page-hero .container:not(:has(.split)) .eyebrow{justify-content:center}
-.page-hero .container:not(:has(.split)) h1{margin-left:auto;margin-right:auto;max-width:18ch}
+.page-hero .container:not(:has(.split)) h1{margin-left:auto;margin-right:auto;max-width:24ch}
 .page-hero .container:not(:has(.split)) .lead,.page-hero .container:not(:has(.split)) .speakable{margin-left:auto;margin-right:auto;max-width:76ch}
 .page-hero .container:not(:has(.split)) .page-hero__meta{justify-content:center}
 .page-hero .container:not(:has(.split)) .disclosure{text-align:left;max-width:900px;margin-left:auto;margin-right:auto}
