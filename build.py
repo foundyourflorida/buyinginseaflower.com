@@ -151,6 +151,10 @@ def main():
     write("build-info.json", json.dumps({"built_at": datetime.datetime.now().strftime("%b %d, %Y %I:%M %p"), "commit": commit, "pages": len(pages), "updated": config.SITE["updated"]}))
     write("CNAME", config.SITE["domain"].replace("https://", "").replace("http://", "") + "\n")
     write(".nojekyll", "")
+    # Cloudflare Pages: security headers and noindex for private paths (ignored by GitHub Pages).
+    write("_headers", "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: geolocation=(), microphone=(), camera=()\n  X-Frame-Options: SAMEORIGIN\n\n/admin/*\n  X-Robots-Tag: noindex, nofollow\n\n/thank-you/*\n  X-Robots-Tag: noindex\n")
+    # Cloudflare Pages redirects (path-based only; host-based www redirect is a zone Redirect Rule, see DEPLOY-CLOUDFLARE.md).
+    write("_redirects", "/index.html / 301\n/blog/index.html /blog/ 301\n")
     from gen.components import flower_mark
     write("favicon.svg", flower_mark(64, cls="").replace('class="" ', ""))
     write("site.webmanifest", json.dumps({"name": config.SITE["name"], "short_name": "SeaFlower Guide", "start_url": "/", "display": "browser",
