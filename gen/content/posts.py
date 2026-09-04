@@ -423,3 +423,5 @@ for p in POSTS:
 
 from .posts2 import POSTS2  # noqa: E402
 POSTS = POSTS + POSTS2
+from .posts3 import POSTS3  # noqa: E402
+POSTS = POSTS + POSTS3
