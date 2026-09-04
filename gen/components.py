@@ -157,6 +157,13 @@ def lite_yt(video_id, title, duration="", cls="", poster=None, start=None):
             f'<span class="lite-yt__play" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path d="M8 5.2v13.6c0 .8.9 1.3 1.6.9l10.6-6.8c.6-.4.6-1.4 0-1.8L9.6 4.3c-.7-.4-1.6.1-1.6.9z" fill="#fff"/></svg></span>{dur}<span class="lite-yt__title">{esc(title)}</span></div>')
 
 
+def display_title(t):
+    t = (t or "").strip()
+    if len(t) >= 95 and t[-1] not in ".!?\"'":
+        t = t[:82].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+    return t
+
+
 def video_card(v, show_desc=False):
     cats = " ".join(v.get("cats", ["general"]))
     meta = []
@@ -165,8 +172,8 @@ def video_card(v, show_desc=False):
     if v.get("duration"):
         meta.append(esc(v["duration"]))
     desc = f'<p class="small" style="color:var(--muted);margin:0">{esc(v["blurb"])}</p>' if show_desc and v.get("blurb") else ""
-    return (f'<div class="video-card" data-filter-group="video" data-cat="{esc(cats)}">{lite_yt(v["id"], v["title"], v.get("duration", ""))}'
-            f'<div class="video-card__title">{esc(v["title"])}</div><div class="video-card__meta">{" · ".join(meta)}</div>{desc}</div>')
+    return (f'<div class="video-card" data-filter-group="video" data-cat="{esc(cats)}">{lite_yt(v["id"], v["title"], v.get("duration", ""), cls="lite-yt--plain")}'
+            f'<div class="video-card__title">{esc(display_title(v["title"]))}</div><div class="video-card__meta">{" · ".join(meta)}</div>{desc}</div>')
 
 
 def testimonial(quote, who, where, stars=True):
@@ -240,7 +247,7 @@ def lead_form(form_id="lead", heading="Get a SeaFlower insider on your side", su
         f'<div class="form__row"><div class="field"><label for="{form_id}-phone">Phone <span style="font-weight:400;color:var(--faint)">(optional, fastest reply)</span></label><input id="{form_id}-phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-5555"></div>'
         f'<div class="field"><label for="{form_id}-timeline">Timeline</label><select id="{form_id}-timeline" name="timeline">{opts}</select></div></div>'
         f'{msg}'
-        f'<label class="field field--check"><input type="checkbox" name="consent" value="yes" required><span>{LEGAL["consent"]}</span></label>'
+        f'<div class="consent-wrap" hidden><label class="field field--check consent-short"><input type="checkbox" name="consent" value="yes"><span>Yes, text and call me about SeaFlower homes. Consent is not a condition of purchase; reply STOP any time.<details><summary>Full terms</summary><span class="full">{LEGAL["consent"]}</span></details></span></label></div>'
         f'<button class="btn btn--coral btn--lg btn--block" type="submit">{esc(submit)}</button>'
         f'<div class="form__status" aria-live="polite"></div>'
         f'<p class="note" style="margin:4px 0 0;font-size:13px">Prefer to talk? Call or text <a href="tel:{SITE["phone_e164"]}">{SITE["phone_display"]}</a> or <a href="{SITE["booking_page"]}">book a time</a>. {SITE["agent"]}, {SITE["brokerage"]}.</p>'
@@ -314,9 +321,8 @@ def divider():
 
 
 def independent_note(extra=""):
-    return ('<p class="disclosure disclosure--top">Independent buyer&rsquo;s guide, not the developer&rsquo;s or any builder&rsquo;s website. Figures are as '
-            'published by the builders and developer on the dates noted and must be verified with them before you rely on them. '
-            '<a href="https://seaflower.com/" target="_blank" rel="noopener nofollow">The developer&rsquo;s official website</a>. ' + extra + '</p>')
+    return ('<p class="indie-note">Independent buyer&rsquo;s guide, not the developer&rsquo;s or any builder&rsquo;s site. Figures are as published on the dates noted and must be verified with the builder. '
+            '<a href="https://seaflower.com/" target="_blank" rel="noopener nofollow">Developer&rsquo;s official site</a>.' + ((" " + extra) if extra else "") + "</p>")
 
 
 def sources_list(items, title="Sources and verification"):

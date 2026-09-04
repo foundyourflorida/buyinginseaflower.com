@@ -138,10 +138,10 @@ def pages():
     <div class="prose">{md(CDD_MD)}</div>
 
     <h3 id="cdd-tables">Lake Flores CDD assessments by phase and lot</h3>
-    <div class="grid grid-2" style="align-items:start">
-      <div>{table(["Product (FY2026)", "Per year"], cdd26, numeric_cols=(1,), note="FY2026 amounts from the developer's HOA and CDD information sheet dated Dec 8, 2025 (includes $402.29 operations and maintenance).")}</div>
-      <div>{table(["Phase", "Lot", "Per year (FY2027 proposed)"], cdd27, numeric_cols=(2,), note="FY2027 proposed budget presented May 2026, public hearing Aug 17, 2026. Phase N1 and 1B include $398.48 O&M; Phase 1C includes $370.58.")}</div>
-    </div>
+    <p class="table-title">FY2027 proposed, by phase and lot</p>
+    {table(["Phase", "Lot", "Per year"], cdd27, numeric_cols=(2,), note="Proposed budget presented May 2026, public hearing Aug 17, 2026. Phase N1 and 1B include $398.48 operations and maintenance; Phase 1C includes $370.58.")}
+    <p class="table-title">FY2026, by product (developer information sheet)</p>
+    {table(["Product", "Per year"], cdd26, numeric_cols=(1,), note="From the developer's HOA and CDD information sheet dated Dec 8, 2025; includes $402.29 operations and maintenance.")}
     <p class="note">{esc(F.CDD['builder_quotes'])} Bonds outstanding: {esc(F.CDD['bonds'])}. District manager: {esc(F.CDD['manager'])}.</p>
     <div class="grid grid-2 mt-3" style="align-items:start">
       <div>{lite_yt(cdd_video['id'], cdd_video['title'], cdd_video['duration'])}</div>

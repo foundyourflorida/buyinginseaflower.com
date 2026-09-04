@@ -176,13 +176,18 @@
     var btn = form.querySelector('button[type="submit"]');
     var endpoint = form.getAttribute('action') || CFG.formEndpoint || '';
     var pageField = form.querySelector('input[name="page"]'); if (pageField) pageField.value = location.href;
+    var phoneField = form.querySelector('input[name="phone"]'), consentWrap = form.querySelector('.consent-wrap');
+    if (phoneField && consentWrap) {
+      var syncConsent = function () { var has = phoneField.value.trim().length > 0; consentWrap.hidden = !has; var cb = consentWrap.querySelector('input[name="consent"]'); if (cb) { cb.required = has; if (!has) cb.checked = false; } };
+      phoneField.addEventListener('input', syncConsent); syncConsent();
+    }
     var utm = getUTM(); Object.keys(utm).forEach(function (k) { var i = d.createElement('input'); i.type = 'hidden'; i.name = k; i.value = utm[k]; form.appendChild(i); });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (form.dataset.sending === '1' || form.dataset.sent === '1') return;   /* dedupe: one submission, one send */
       var hp = form.querySelector('input[name="_gotcha"]'); if (hp && hp.value) return;
       var consent = form.querySelector('input[name="consent"]');
-      if (consent && !consent.checked) { show('err', 'Please tick the consent box so I can reply to you.'); consent.focus(); return; }
+      if (consent && consent.required && !consent.checked) { show('err', 'Please tick the consent box so I can text or call the number you entered.'); consent.focus(); return; }
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var raw = {}; new FormData(form).forEach(function (v, k) { raw[k] = v; });
       var extras = [];

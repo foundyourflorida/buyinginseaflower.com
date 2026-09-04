@@ -27,7 +27,7 @@ def pages():
         ("Location", "Beaches, schools, shopping, hospitals, airports, flood and evacuation zones, and drive times.", "/location/", "compass"),
     ]
     start_cards = "".join(card(t, b, h, i, link_label="Read the guide") for t, b, h, i in start)
-    brow = "".join(f'<tr><td><a href="/builders/{b["slug"]}/"><b>{esc(b["name"])}</b></a></td><td>{esc(", ".join(b["home_types"])[:60])}</td><td>{esc(", ".join(b["lot_widths"])) if b.get("lot_widths") else "attached"}</td><td>{esc(b["sqft_range"])}</td><td>{esc(b["price_phrase"][:58])}</td></tr>' for b in BUILDERS)
+    brow = "".join(f'<tr><td><a href="/builders/{fs["slug"]}/"><b>{esc(fs["name"])}</b></a></td><td>{esc(fs["product"])}</td><td>{esc(fs["lots"])}</td><td>{esc(fs["sqft"])}</td><td>{esc(fs["price"])}</td></tr>' for fs in F.BUILDERS_SUMMARY)
     video_cards = "".join(video_card(v) for v in vids)
     faq_html = "".join(faq_item(q, a, "home") for q, a in TEASER_FAQ)
     try:

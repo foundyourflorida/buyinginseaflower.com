@@ -31,22 +31,47 @@ def badge(status):
     return f'<span class="chip {cls}" style="font-size:11px;padding:3px 8px">{esc(status.title())}</span>'
 
 
+def nice_date(iso):
+    try:
+        import datetime
+        return datetime.datetime.strptime(iso[:10], "%Y-%m-%d").strftime("%b %-d, %Y")
+    except Exception:
+        return iso
+
+
+def clean_name(n):
+    return re.sub(r"^SeaFlower\s*[–-]\s*", "", n or "").strip()
+
+
+def tidy(v, n=18):
+    v = re.sub(r"\s*\(.*?\)", "", str(v or "")).split(";")[0].strip()
+    return v[:n]
+
+
+def short_note(p):
+    n = re.sub(r"Plan #[A-Z0-9]+\.?\s*", "", p.get("notes", "") or "").split(".")[0].strip()
+    return n[:58] + ("…" if len(n) > 58 else "")
+
+
 def plan_table(c):
     rows = []
     for p in c["plans"]:
-        baths = p.get("baths", "") + (f" + {p['half_baths']} half" if p.get("half_baths") and p["half_baths"] not in ("", "0") else "")
-        link = f'<a href="{esc(p["url"])}" target="_blank" rel="noopener nofollow">plan page</a>' if p.get("url") else ""
-        notes = esc(p.get("notes", ""))[:140]
-        rows.append((f"<b>{esc(p['name'])}</b>", esc(p.get("price", "")), esc(p.get("sqft", "")), esc(str(p.get("stories", ""))), esc(p.get("beds", "")), esc(baths), esc(p.get("garage", "")), f"{notes} {link}".strip()))
-    return table(["Plan", "Base price", "Sq ft", "Stories", "Beds", "Baths", "Garage", "Notes"], rows, numeric_cols=(1, 2))
+        baths = tidy(p.get("baths", ""), 12) + (f" + {tidy(p['half_baths'], 4)} half" if p.get("half_baths") and p["half_baths"] not in ("", "0") else "")
+        link = f'<a href="{esc(p["url"])}" target="_blank" rel="noopener nofollow">Plan</a>' if p.get("url") else ""
+        price = p.get("price", "").strip()
+        price = price if price.startswith("$") and len(price) <= 14 else "On request"
+        name = f"<b>{esc(p['name'])}</b>" + (f'<span class="plan-note">{esc(short_note(p))}</span>' if short_note(p) else "")
+        rows.append((name, esc(price), esc(tidy(p.get("sqft", ""), 16)), esc(tidy(p.get("stories", ""), 3)), esc(tidy(p.get("beds", ""), 8)), esc(baths), esc(tidy(p.get("garage", ""), 16)), link))
+    return table(["Plan", "Base price", "Sq ft", "Stories", "Beds", "Baths", "Garage", ""], rows, numeric_cols=(1, 2))
 
 
 def qmi_table(b):
     rows = []
     for q in b["quick_move_ins"]:
         link = f'<a href="{esc(q["url"])}" target="_blank" rel="noopener nofollow">listing</a>' if q.get("url") else ""
-        rows.append((f"<b>{esc(q['plan'])}</b>", esc(q.get("address", "")), esc(q.get("price", "")), esc(q.get("sqft", "")), f"{esc(q.get('beds', ''))} / {esc(q.get('baths', ''))}", esc(q.get("ready", "")), link))
-    return table(["Plan", "Address", "Price", "Sq ft", "Beds / baths", "Status", ""], rows, numeric_cols=(2, 3), note=f"As listed by {esc(b['name'])} on {esc(b['verified'])}. Inventory and pricing change weekly; I keep a current list, ask for it.")
+        addr = re.sub(r",?\s*Bradenton,?\s*FL\s*34210", "", q.get("address", "")).split("(")[0].strip(" ,")
+        rows.append((f"<b>{esc(tidy(q['plan'], 28))}</b>", esc(addr), esc(tidy(q.get("price", ""), 22)), esc(tidy(q.get("sqft", ""), 8)), f"{esc(tidy(q.get('beds', ''), 4))} / {esc(tidy(q.get('baths', ''), 10))}", esc(tidy(q.get("ready", ""), 24)), link))
+    return table(["Plan", "Address", "Price", "Sq ft", "Beds / baths", "Status", ""], rows, numeric_cols=(2, 3), note=f"As listed by {esc(b['name'])} on {esc(nice_date(b['verified']))}. Inventory and pricing change weekly; I keep a current list, ask for it.")
 
 
 def builder_page(b):
@@ -54,16 +79,23 @@ def builder_page(b):
     plan_count = sum(len(c["plans"]) for c in b["collections"])
     qmi_count = len(b["quick_move_ins"])
     price_low = "${:,}".format(b["price_low"]) if b.get("price_low") else ""
-    summary = (f"<strong>{esc(b['name'])} at SeaFlower:</strong> {esc(b['tagline'])} {esc(b['price_phrase'])}. "
-               f"{plan_count} floor plans" + (f" on {esc(', '.join(b['lot_widths']))} lots" if b.get("lot_widths") else "") +
-               f", {esc(b['sqft_range'])} sq ft, {esc(b['beds'])} bedrooms. Sales office: {esc(b['sales_office'].get('address', ''))}. Verified {esc(b['verified'])}.")
+    fs = next((x for x in F.BUILDERS_SUMMARY if x["slug"] == slug), None) or {}
+    product = fs.get("product", b["tagline"]).rstrip(".")
+    price_txt = fs.get("price", b["price_phrase"].split("(")[0]).strip()
+    price_txt = price_txt[0].lower() + price_txt[1:] if price_txt else ""
+    office = re.sub(r",?\s*Bradenton,?\s*FL\s*34210", "", b["sales_office"].get("address", "")).strip(" ,.")
+    lots_txt = fs.get("lots", ", ".join(b.get("lot_widths") or []))
+    summary = (f"<strong>{esc(b['name'])} builds {esc(product)} in SeaFlower, {esc(price_txt)}.</strong> "
+               f"{plan_count} floor plans on {esc(lots_txt)} lots, {esc(fs.get('sqft', b['sqft_range']))} square feet, {esc(b['beds'])} bedrooms, {qmi_count} quick move-in homes listed. "
+               f"Sales office at {esc(office)}. Verified {esc(nice_date(b['verified']))}.")
     collections_html = ""
     for c in b["collections"]:
         cid = "collection-" + re.sub(r"[^a-z0-9]+", "-", c["name"].lower()).strip("-")
-        collections_html += (f'<h3 id="{cid}">{esc(c["name"])} <span style="font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--muted)">· {esc(c.get("lot_width", ""))} · {esc(c.get("price_phrase", ""))}</span></h3>'
-                             f'<p>{esc(c.get("summary", ""))}' + (f' <a href="{esc(c["url"])}" target="_blank" rel="noopener nofollow">Builder page</a>.' if c.get("url") else "") + '</p>' + plan_table(c))
+        lot = tidy(c.get("lot_width", ""), 14)
+        collections_html += (f'<h3 id="{cid}">{esc(clean_name(c["name"]))} <span style="font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--muted)">· {esc(lot)} · {esc(tidy(c.get("price_phrase", ""), 40))}</span></h3>'
+                             f'<p class="note">{len(c["plans"])} plans' + (f' on {esc(lot)} homesites' if lot and lot != "—" else "") + f', {esc(tidy(c.get("price_phrase", ""), 40).lower())}. Base prices as published by the builder' + (f'; <a href="{esc(c["url"])}" target="_blank" rel="noopener nofollow">collection page</a>' if c.get("url") else "") + '.</p>' + plan_table(c))
     so = b["sales_office"]
-    models = "".join(f"<li><b>{esc(m['name'])}</b> ({esc(m.get('collection', ''))}) · {esc(m.get('address', ''))}" + (f" · opened {esc(m['opened'])}" if m.get("opened") else "") + (f" · {esc(m['sqft'])} sq ft" if m.get("sqft") else "") + "</li>" for m in b.get("models", []))
+    models = "".join(f"<li><b>{esc(m['name'])}</b> ({esc(clean_name(m.get('collection', '')))}) · {esc(re.sub(r',?\s*Bradenton,?\s*FL\s*34210', '', m.get('address', '')))}" + (f" · opened {esc(nice_date(m['opened']))}" if m.get("opened") else "") + (f" · {esc(m['sqft'])} sq ft" if m.get("sqft") else "") + "</li>" for m in b.get("models", []))
     consultants = ", ".join(so.get("consultants", [])) if so.get("consultants") else ""
     inc = b.get("incentives", [])
     inc_html = "".join(f'<li>{badge(i.get("status", ""))} <b>{esc(i["title"])}</b> <span class="small" style="color:var(--faint)">(as of {esc(i.get("as_of", ""))})</span><br><span class="small">{esc(i.get("detail", ""))[:420]}</span>' + (f' <a class="small" href="{esc(i["url"])}" target="_blank" rel="noopener nofollow">source</a>' if i.get("url") else "") + "</li>" for i in inc) or "<li>No incentive is currently published by the builder for SeaFlower. That does not mean nothing is available; it means it is negotiated on site.</li>"
@@ -84,26 +116,25 @@ def builder_page(b):
   {eyebrow("Builder profile · " + TIER_LABEL.get(b.get("tier", ""), "") + " tier")}
   <h1>{esc(b['name'])} at SeaFlower: <em style="font-style:italic;color:var(--coral-700)">plans, prices and what to know before you sign</em></h1>
   {speakable(summary)}
-  <div class="page-hero__meta">{updated_badge(b['verified'])}<span><a href="{esc(b['urls'].get('community', '#'))}" target="_blank" rel="noopener nofollow">Builder&rsquo;s SeaFlower page</a></span></div>
+  <div class="page-hero__meta">{updated_badge(nice_date(b['verified']))}<span><a href="{esc(b['urls'].get('community', '#'))}" target="_blank" rel="noopener nofollow">Builder&rsquo;s SeaFlower page</a></span></div>
   {independent_note("Builder names are used to identify the builder only; plan and price data are quoted from the builder's public pages and belong to the builder.")}
 </div></section>
 
 <section class="section section--flush-top reveal"><div class="container">
-  {fact_strip([(esc(b['price_phrase'].split('(')[0].split(';')[0].replace('Priced from: ', 'From ').replace('Estate Homes starting from ', 'From ').strip()[:18]), "starting price", "as phrased by builder"), (esc(", ".join(b['lot_widths'])) if b.get('lot_widths') else "See plans", "lot widths", esc(b.get('garage_orientation', ''))[:40]), (str(plan_count), "floor plans", esc(b['sqft_range']) + " sq ft"), (str(qmi_count), "quick move-ins", "listed " + esc(b['verified'])), (esc(b['beds']), "bedrooms", esc(b['baths']) + " baths")])}
+  {fact_strip([(esc(b['price_phrase'].split('(')[0].split(';')[0].replace('Priced from: ', 'From ').replace('Estate Homes starting from ', 'From ').strip()[:18]), "starting price", "as phrased by builder"), (esc(", ".join(b['lot_widths'])) if b.get('lot_widths') else "See plans", "lot widths", esc(b.get('garage_orientation', ''))[:40]), (str(plan_count), "floor plans", esc(b['sqft_range']) + " sq ft"), (str(qmi_count), "quick move-ins", "listed " + esc(nice_date(b['verified']))), (esc(b['beds']), "bedrooms", esc(b['baths']) + " baths")])}
 </div></section>
 
 <section class="section reveal"><div class="container"><div class="grid grid-sidebar">
   <div>
     <h2 id="take">Trent&rsquo;s take</h2>
     {trent_take(take)}
-    <p>{esc(b.get('distinct', ''))}</p>
 
     <h2 id="plans" style="margin-top:2em">Floor plans and base prices</h2>
-    <p class="lead">Base prices as published by {esc(b['name'])} on {esc(b['verified'])}. They exclude the lot premium, structural options and design selections. Square footage can vary by elevation and options.</p>
+    <p class="lead">Base prices as published by {esc(b['name'])} on {esc(nice_date(b['verified']))}. They exclude the lot premium, structural options and design selections. Square footage can vary by elevation and options.</p>
     {collections_html}
 
     <h2 id="quick-move-ins" style="margin-top:2em">Quick move-in homes</h2>
-    {qmi_table(b) if qmi_count else "<p>No quick move-in homes were listed by the builder on " + esc(b['verified']) + ". Inventory turns over quickly; ask me for the current list.</p>"}
+    {qmi_table(b) if qmi_count else "<p>No quick move-in homes were listed by the builder on " + esc(nice_date(b['verified'])) + ". Inventory turns over quickly; ask me for the current list.</p>"}
 
     <h2 id="model" style="margin-top:2em">Model homes and sales office</h2>
     <div class="card"><p style="margin:0 0 8px"><b>{esc(so.get('address', ''))}</b></p><p style="margin:0 0 8px">{esc(so.get('hours', '') or 'Hours not published')}</p>{('<p style="margin:0 0 8px">On-site consultants as published: ' + esc(consultants) + '</p>') if consultants else ''}{('<ul style="margin:8px 0 0">' + models + '</ul>') if models else ''}</div>
@@ -165,11 +196,11 @@ INDEX_FAQ = [
 
 def index_page():
     rows = []
-    for b in BUILDERS:
-        rows.append((f'<a href="/builders/{b["slug"]}/"><b>{esc(b["name"])}</b></a>', TIER_LABEL.get(b.get("tier", ""), ""), esc(", ".join(b["home_types"])[:70]), esc(", ".join(b["lot_widths"])) if b.get("lot_widths") else "attached", esc(b["sqft_range"]), esc(b["beds"]), esc(b["price_phrase"][:60])))
+    for fs in F.BUILDERS_SUMMARY:
+        rows.append((f'<a href="/builders/{fs["slug"]}/"><b>{esc(fs["name"])}</b></a>', esc(fs["tier"]), esc(fs["product"]), esc(fs["lots"]), esc(fs["sqft"]), esc(fs["beds"]), esc(fs["price"])))
     cards = "".join(
-        f'<a class="card card--hover card--link" href="/builders/{b["slug"]}/"><div class="card__kicker">{TIER_LABEL.get(b.get("tier", ""), "")} tier · {esc(", ".join(b["lot_widths"])) if b.get("lot_widths") else "attached"}</div><h3>{esc(b["name"])}</h3><p>{esc(b["tagline"])}</p><p style="color:var(--green-900);font-weight:600;margin-top:10px">{esc(b["price_phrase"][:70])}</p><span class="link-arrow">Full profile</span></a>'
-        for b in BUILDERS)
+        f'<a class="card card--hover card--link" href="/builders/{fs["slug"]}/"><div class="card__kicker">{esc(fs["tier"])} tier · {esc(fs["lots"])}</div><h3>{esc(fs["name"])}</h3><p>{esc(fs["product"])}. {esc(fs["sqft"])} sq ft, {esc(fs["beds"])} bedrooms.</p><p style="color:var(--green-900);font-weight:600;margin-top:10px">{esc(fs["price"])}</p><span class="link-arrow">Full profile</span></a>'
+        for fs in F.BUILDERS_SUMMARY)
     faq_html = "".join(faq_item(q, a, "builders") for q, a in INDEX_FAQ)
     tour = by_id("kCjttf-puQQ")
     intro = ("<strong>Five builders sell new homes in SeaFlower:</strong> M/I Homes (townhomes and twin villas from $399,999), Pulte Homes (single-family from $404,990), "

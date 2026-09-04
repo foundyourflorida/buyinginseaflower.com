@@ -563,3 +563,30 @@ tr[hidden]{display:none}
 .consent-short .full{display:block;margin-top:8px;padding:10px 12px;background:var(--sand);border-radius:8px;font-size:12.5px}
 
 @media (max-width:640px){.is-landing .header__cta .btn{display:none}.is-landing .brand__sub{display:none}}
+
+/* ---------- polish pass ---------- */
+.indie-note{font-size:12.5px;color:var(--faint);max-width:78ch;margin:22px auto 0;padding-top:14px;border-top:1px solid var(--line);line-height:1.5}
+.page-hero .container:not(:has(.split)) .indie-note{text-align:center}
+.lite-yt--plain .lite-yt__title{display:none}
+.lite-yt--plain::before{background:linear-gradient(to top,rgba(11,35,27,.35),rgba(11,35,27,0) 50%)}
+.video-card .lite-yt{border-radius:12px}
+.video-card__title{font-size:15.5px}
+.plan-note{display:block;font-weight:400;font-size:12.5px;color:var(--faint);margin-top:3px;max-width:26ch}
+.grid-sidebar table{font-size:14.5px}
+.grid-sidebar th,.grid-sidebar td{padding:12px 13px}
+th{letter-spacing:.08em;font-size:11.5px}
+tbody tr:nth-child(even) td{background:#FDFBF7}
+tbody tr:hover td{background:#FAF4E6}
+.table-title{font-family:var(--font-display);font-size:22px;font-weight:500;color:var(--green-900);margin:1.6em 0 .5em}
+.card__kicker{letter-spacing:.12em;font-size:11.5px}
+.builder-hero-sub{font-size:15px;color:var(--muted)}
+.section-head .lead{font-size:clamp(17px,1.4vw,19px)}
+.stat{padding:22px 24px}
+.stat__value{font-weight:500}
+.fact-strip .stat__value{font-weight:500}
+.hero__meta{margin-top:30px}
+.hero .lead{font-size:clamp(17.5px,1.5vw,20px)}
+.card h3{font-size:22px}
+.card p{font-size:15.5px;line-height:1.6}
+.cta-band{border-radius:28px}
+.footer__legal{font-size:12px}

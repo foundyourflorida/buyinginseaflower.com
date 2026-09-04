@@ -27,16 +27,23 @@ def pages():
     def short_price(v):
         v = (v or "").strip()
         return v if v.startswith("$") and len(v) <= 14 else ("On request" if not v.startswith("$") else v.split("(")[0].strip())
+    def tidy(v, n=16):
+        v = re.sub(r"\s*\(.*?\)", "", str(v or "")).split(";")[0].strip()
+        return "—" if v.lower() in ("unverified", "") else v[:n]
+    def coll(name):
+        name = name.replace("SeaFlower – ", "").replace("Homes", "").replace(" – ", " ").replace("front garage", "front").replace("rear garage", "rear").replace("Series", "").strip()
+        return re.sub(r"\s+", " ", name)[:22]
     prow = []
     for b, c, p in plans:
-        baths = p.get("baths", "") + (f" + {p['half_baths']}½" if p.get("half_baths") and p["half_baths"] not in ("", "0") else "")
+        baths = tidy(p.get("baths", ""), 10) + (f" + {tidy(p['half_baths'], 4)}½" if p.get("half_baths") and p["half_baths"] not in ("", "0") else "")
         link = f'<a href="{esc(p["url"])}" target="_blank" rel="noopener nofollow">plan</a>' if p.get("url") else ""
-        prow.append(f'<tr data-filter-group="plan" data-cat="{b["slug"]}"><td><a href="/builders/{b["slug"]}/">{esc(b["short"])}</a></td><td><b>{esc(p["name"])}</b></td><td>{esc(c["name"])[:34]}</td><td>{esc(c.get("lot_width", ""))}</td>'
-                    f'<td class=num data-sort="{num(p.get("sqft", ""))}" title="{esc(p.get("sqft", ""))}">{esc(short_sqft(p.get("sqft", "")))}</td><td>{esc(str(p.get("stories", "")))}</td><td>{esc(p.get("beds", ""))}</td><td>{esc(baths)}</td><td>{esc(p.get("garage", ""))}</td><td class=num data-sort="{num(p.get("price", "")) if p.get("price", "").strip().startswith("$") else 0}" title="{esc(p.get("price", ""))}">{esc(short_price(p.get("price", "")))}</td><td>{link}</td></tr>')
+        prow.append(f'<tr data-filter-group="plan" data-cat="{b["slug"]}"><td><a href="/builders/{b["slug"]}/">{esc(b["short"])}</a></td><td><b>{esc(p["name"])}</b></td><td>{esc(coll(c["name"]))}</td><td>{esc(tidy(c.get("lot_width", ""), 12))}</td>'
+                    f'<td class=num data-sort="{num(p.get("sqft", ""))}" title="{esc(p.get("sqft", ""))}">{esc(short_sqft(p.get("sqft", "")))}</td><td>{esc((re.match(r"\d+", str(p.get("stories", "")) or "") or type("m", (), {"group": lambda self: "—"})()).group())}</td><td>{esc(tidy(p.get("beds", ""), 8))}</td><td>{esc(baths)}</td><td>{esc(tidy(p.get("garage", ""), 14))}</td><td class=num data-sort="{num(p.get("price", "")) if p.get("price", "").strip().startswith("$") else 0}" title="{esc(p.get("price", ""))}">{esc(short_price(p.get("price", "")))}</td><td>{link}</td></tr>')
     qrow = []
     for b, q in qmis:
         link = f'<a href="{esc(q["url"])}" target="_blank" rel="noopener nofollow">listing</a>' if q.get("url") else ""
-        qrow.append(f'<tr data-filter-group="qmi" data-cat="{b["slug"]}"><td><a href="/builders/{b["slug"]}/">{esc(b["short"])}</a></td><td><b>{esc(q["plan"])}</b></td><td>{esc(q.get("address", ""))[:60]}</td><td class=num data-sort="{num(q.get("price", ""))}">{esc(q.get("price", ""))[:34]}</td><td class=num data-sort="{num(q.get("sqft", ""))}">{esc(q.get("sqft", ""))[:14]}</td><td>{esc(q.get("beds", ""))} / {esc(q.get("baths", ""))}</td><td>{esc(q.get("ready", ""))[:40]}</td><td>{link}</td></tr>')
+        addr = re.sub(r",?\s*Bradenton,?\s*FL\s*34210", "", q.get("address", "")).split("(")[0].strip(" ,")
+        qrow.append(f'<tr data-filter-group="qmi" data-cat="{b["slug"]}"><td><a href="/builders/{b["slug"]}/">{esc(b["short"])}</a></td><td><b>{esc(tidy(q["plan"], 26))}</b></td><td>{esc(addr[:40])}</td><td class=num data-sort="{num(q.get("price", ""))}">{esc(q.get("price", ""))[:34]}</td><td class=num data-sort="{num(q.get("sqft", ""))}">{esc(q.get("sqft", ""))[:14]}</td><td>{esc(q.get("beds", ""))} / {esc(q.get("baths", ""))}</td><td>{esc(q.get("ready", ""))[:40]}</td><td>{link}</td></tr>')
     plan_table = (f'<div class="table-wrap"><table data-sortable><thead><tr><th>Builder</th><th>Plan</th><th>Collection</th><th>Lot</th><th class=num>Sq ft</th><th>Stories</th><th>Beds</th><th>Baths</th><th>Garage</th><th class=num>Base price</th><th></th></tr></thead><tbody>{"".join(prow)}</tbody></table></div>'
                   f'<p class="table-note">Click a column heading to sort. {len(plans)} plans as published by the builders on {esc(F.AS_OF)}; base prices exclude lot premiums and options. Square footage may vary by elevation.</p>')
     qmi_table = (f'<div class="table-wrap"><table data-sortable><thead><tr><th>Builder</th><th>Plan</th><th>Address</th><th class=num>Price</th><th class=num>Sq ft</th><th>Beds / baths</th><th>Status</th><th></th></tr></thead><tbody>{"".join(qrow)}</tbody></table></div>'
