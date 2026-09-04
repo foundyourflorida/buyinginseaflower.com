@@ -31,7 +31,10 @@
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    reveals.forEach(function (el) { io.observe(el); });
+    reveals.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < w.innerHeight && r.bottom > 0) { el.classList.add('is-visible'); } else { io.observe(el); }
+    });
   } else { reveals.forEach(function (el) { el.classList.add('is-visible'); }); }
 
   /* ---- lite YouTube facade ---- */
