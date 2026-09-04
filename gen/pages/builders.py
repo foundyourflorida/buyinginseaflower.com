@@ -89,7 +89,7 @@ def builder_page(b):
 </div></section>
 
 <section class="section section--flush-top reveal"><div class="container">
-  {fact_strip([(esc(b['price_phrase'].split('(')[0].split(';')[0].strip()[:22]), "starting price", "as phrased by builder"), (esc(", ".join(b['lot_widths'])) if b.get('lot_widths') else "See plans", "lot widths", esc(b.get('garage_orientation', ''))[:40]), (str(plan_count), "floor plans", esc(b['sqft_range']) + " sq ft"), (str(qmi_count), "quick move-ins", "listed " + esc(b['verified'])), (esc(b['beds']), "bedrooms", esc(b['baths']) + " baths")])}
+  {fact_strip([(esc(b['price_phrase'].split('(')[0].split(';')[0].replace('Priced from: ', 'From ').replace('Estate Homes starting from ', 'From ').strip()[:18]), "starting price", "as phrased by builder"), (esc(", ".join(b['lot_widths'])) if b.get('lot_widths') else "See plans", "lot widths", esc(b.get('garage_orientation', ''))[:40]), (str(plan_count), "floor plans", esc(b['sqft_range']) + " sq ft"), (str(qmi_count), "quick move-ins", "listed " + esc(b['verified'])), (esc(b['beds']), "bedrooms", esc(b['baths']) + " baths")])}
 </div></section>
 
 <section class="section reveal"><div class="container"><div class="grid grid-sidebar">

@@ -737,7 +737,7 @@ Home
 
  Independent buyer’s guide, not the developer’s or any builder’s website. Figures are as published by the builders and developer on the dates noted and must be verified with them before you rely on them. The developer’s official website . Builder names are used to identify the builder only; plan and price data are quoted from the builder's public pages and belong to the builder.
 
- Priced from: $399,999
+ From $399,999
  starting price
  as phrased by builder
 
@@ -1709,7 +1709,7 @@ Home
 
  Independent buyer’s guide, not the developer’s or any builder’s website. Figures are as published by the builders and developer on the dates noted and must be verified with them before you rely on them. The developer’s official website . Builder names are used to identify the builder only; plan and price data are quoted from the builder's public pages and belong to the builder.
 
- Estate Homes starting 
+ From $1,250,000, e
  starting price
  as phrased by builder
 
@@ -1939,11 +1939,11 @@ Home
  All builders M/I Homes Pulte David Weekley Cardel Issa 
 
  Builder Plan Collection Lot Sq ft Stories Beds Baths Garage Base price 
- M/I Homes Ruby Villas Series 30' 1,486 1 2 2 2-car front load Starting at: $404,999 plan 
- M/I Homes Topaz Villas Series 30' 1,671 1 2–3 2 2-car front load Starting at: $437,999 plan 
- M/I Homes Carmel Townhome Series 22' and 28' 1,694 (series page: 1,702) 2 3 2 + 1½ 2-car rear load (detached) Starting at: $431,999 plan 
- M/I Homes Bay Harbor Townhome Series 22' and 28' 1,698 (series page: 1,706) 2 3 2 + 1½ 2-car rear load (detached) Starting at: $431,999 plan 
- M/I Homes Annapolis Townhome Series 22' and 28' 2,406 2 3 + loft 2 + 1½ 2-car rear load Starting at: $559,999 plan 
+ M/I Homes Ruby Villas Series 30' 1,486 1 2 2 2-car front load On request plan 
+ M/I Homes Topaz Villas Series 30' 1,671 1 2–3 2 2-car front load On request plan 
+ M/I Homes Carmel Townhome Series 22' and 28' 1,694 2 3 2 + 1½ 2-car rear load (detached) On request plan 
+ M/I Homes Bay Harbor Townhome Series 22' and 28' 1,698 2 3 2 + 1½ 2-car rear load (detached) On request plan 
+ M/I Homes Annapolis Townhome Series 22' and 28' 2,406 2 3 + loft 2 + 1½ 2-car rear load On request plan 
  Pulte Contour Scenic unverified 1,405+ 1 2 2 2-car $404,990 plan 
  Pulte Flagstone Scenic unverified 1,518+ 1 2–3 2 + 0–1½ 2-car $429,990 plan 
  Pulte Hallmark Scenic unverified 1,655+ 1 2–3 2 2-car $429,990 plan 
@@ -1988,19 +1988,19 @@ Home
  Cardel Daybreak Classic Homes – 60' rear gara 60' 2,792 1 + optional garage suite (inferred) 3–4 2.5–3.5 + 1 (implied by bath range)½ 2-car rear (alley); 3-car option; Parade listing describes a detached rear garage $736,990 plan 
  Cardel Eventide Classic Homes – 60' rear gara 60' 3,055 2 + optional garage suite (inferred; Upper Floor tab lists railing, wet bar and garage suite) 4–5 3.5–4.5 + 1 (implied by bath range)½ 2-car rear (alley); 3-car option $807,990 plan 
  Cardel Sunrise Classic Homes – 60' rear gara 60' 3,122 2 + optional garage suite (inferred, weaker: Upper Floor tab shows only an optional railing and the garage suite; confirm with sales) 4–5 2.5–3.5 + 1 (implied by bath range)½ 2-car rear (alley); '3-Car Garage with Stairs' option $811,990 plan 
- Issa Addison The Lakeshore 80' 2,905 sq ft A/C / 3,911 total 1 3 2 + 1½ 2-Car Garage w/ Cart Storage Not published (per-plan base prices are not published) plan 
- Issa Preston The Lakeshore 80' 2,915 sq ft A/C / 3,966 total 1 3 3 + 1½ 2-Car Garage w/ Cart Storage Not published (per-plan base prices are not published) plan 
- Issa Kingston The Lakeshore 80' 3,084 sq ft living (Mar 27 2025 release); total unverified unverified 3 3 + unverified½ unverified Not published plan 
- Issa Hemingway (2-Car Garage) The Lakeshore 80' 3,264 sq ft A/C / 4,238 total 1 3 3 + 1½ 2-Car Garage w/ Cart Storage Not published (per-plan base prices are not published) plan 
- Issa Hemingway (3-Car Garage) The Lakeshore 80' 3,474 sq ft A/C / 4,787 total 1 3 3 + 1½ 3-Car Garage Model listed "From the Low $1,300,000s" (2026 Parade of Homes); per-plan base price not published plan 
- Issa Flagler The Lakeshore 80' 3,725 sq ft A/C / 4,854 total 2 4 4 + 1½ 3-Car Garage Not published (spec at 7804 Lake Flores Ave listed at $1,720,000) plan 
- Issa Flagler – Garage Apartment The Lakeshore 80' 4,523 sq ft A/C / 5,818 total 2 5 5 + 1½ 3-Car Garage Not published (per-plan base prices are not published) plan 
- Issa Amelia The Preserve 80' 2,954 sq ft A/C / 4,142 total 1 4 3 2-Car Garage w/ Cart Storage Not published (spec at 7808 Lake Flores Ave listed at $1,567,560) plan 
- Issa Hatteras The Preserve 80' 3,474 sq ft A/C / 4,787 total 1 3 3 + 1½ 3-Car Garage Not published (per-plan base prices are not published) plan 
- Issa Key West The Preserve 80' 3,755 sq ft A/C / 4,938 total 2 4 4 + 1½ 3-Car Garage Not published (per-plan base prices are not published) plan 
- Issa Key West – Garage Apartment The Preserve 80' 4,503 sq ft A/C / 5,798 total 2 5 5 + 1½ 3-Car Garage Not published (per-plan base prices are not published) plan 
- Issa Palm Beach The Preserve 80' unverified unverified unverified unverified + unverified½ unverified Not published plan 
- Issa Sanibel The Preserve 80' unverified unverified unverified unverified + unverified½ unverified Not published plan 
+ Issa Addison The Lakeshore 80' 2,905 1 3 2 + 1½ 2-Car Garage w/ Cart Storage On request plan 
+ Issa Preston The Lakeshore 80' 2,915 1 3 3 + 1½ 2-Car Garage w/ Cart Storage On request plan 
+ Issa Kingston The Lakeshore 80' 3,084 living unverified 3 3 + unverified½ unverified On request plan 
+ Issa Hemingway (2-Car Garage) The Lakeshore 80' 3,264 1 3 3 + 1½ 2-Car Garage w/ Cart Storage On request plan 
+ Issa Hemingway (3-Car Garage) The Lakeshore 80' 3,474 1 3 3 + 1½ 3-Car Garage On request plan 
+ Issa Flagler The Lakeshore 80' 3,725 2 4 4 + 1½ 3-Car Garage On request plan 
+ Issa Flagler – Garage Apartment The Lakeshore 80' 4,523 2 5 5 + 1½ 3-Car Garage On request plan 
+ Issa Amelia The Preserve 80' 2,954 1 4 3 2-Car Garage w/ Cart Storage On request plan 
+ Issa Hatteras The Preserve 80' 3,474 1 3 3 + 1½ 3-Car Garage On request plan 
+ Issa Key West The Preserve 80' 3,755 2 4 4 + 1½ 3-Car Garage On request plan 
+ Issa Key West – Garage Apartment The Preserve 80' 4,503 2 5 5 + 1½ 3-Car Garage On request plan 
+ Issa Palm Beach The Preserve 80' unverified unverified unverified unverified + unverified½ unverified On request plan 
+ Issa Sanibel The Preserve 80' unverified unverified unverified unverified + unverified½ unverified On request plan 
 
  Click a column heading to sort. 62 plans as published by the builders on September 3, 2026; base prices exclude lot premiums and options. Square footage may vary by elevation.
 

@@ -21,12 +21,18 @@ def pages():
         f'<a href="#" class="chip" data-filter="plan:{b["slug"]}" role="button" aria-pressed="false">{esc(b["short"])}</a>' for b in BUILDERS)
     qchips = '<a href="#" class="chip is-active" data-filter="qmi:all" role="button" aria-pressed="true">All builders</a>' + "".join(
         f'<a href="#" class="chip" data-filter="qmi:{b["slug"]}" role="button" aria-pressed="false">{esc(b["short"])}</a>' for b in BUILDERS if b["quick_move_ins"])
+    def short_sqft(v):
+        v = (v or "").split(" A/C")[0].split("(")[0].replace(" sq ft", "").strip()
+        return v
+    def short_price(v):
+        v = (v or "").strip()
+        return v if v.startswith("$") and len(v) <= 14 else ("On request" if not v.startswith("$") else v.split("(")[0].strip())
     prow = []
     for b, c, p in plans:
         baths = p.get("baths", "") + (f" + {p['half_baths']}½" if p.get("half_baths") and p["half_baths"] not in ("", "0") else "")
         link = f'<a href="{esc(p["url"])}" target="_blank" rel="noopener nofollow">plan</a>' if p.get("url") else ""
         prow.append(f'<tr data-filter-group="plan" data-cat="{b["slug"]}"><td><a href="/builders/{b["slug"]}/">{esc(b["short"])}</a></td><td><b>{esc(p["name"])}</b></td><td>{esc(c["name"])[:34]}</td><td>{esc(c.get("lot_width", ""))}</td>'
-                    f'<td class=num data-sort="{num(p.get("sqft", ""))}">{esc(p.get("sqft", ""))}</td><td>{esc(str(p.get("stories", "")))}</td><td>{esc(p.get("beds", ""))}</td><td>{esc(baths)}</td><td>{esc(p.get("garage", ""))}</td><td class=num data-sort="{num(p.get("price", ""))}">{esc(p.get("price", ""))}</td><td>{link}</td></tr>')
+                    f'<td class=num data-sort="{num(p.get("sqft", ""))}" title="{esc(p.get("sqft", ""))}">{esc(short_sqft(p.get("sqft", "")))}</td><td>{esc(str(p.get("stories", "")))}</td><td>{esc(p.get("beds", ""))}</td><td>{esc(baths)}</td><td>{esc(p.get("garage", ""))}</td><td class=num data-sort="{num(p.get("price", "")) if p.get("price", "").strip().startswith("$") else 0}" title="{esc(p.get("price", ""))}">{esc(short_price(p.get("price", "")))}</td><td>{link}</td></tr>')
     qrow = []
     for b, q in qmis:
         link = f'<a href="{esc(q["url"])}" target="_blank" rel="noopener nofollow">listing</a>' if q.get("url") else ""

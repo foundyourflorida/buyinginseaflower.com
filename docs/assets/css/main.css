@@ -181,7 +181,7 @@ small,.small{font-size:14px}
 .page-hero__meta{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:22px;font-size:14px;color:var(--muted)}
 
 /* ---------- chips / badges / stats ---------- */
-.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--radius-pill);background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--green-900);text-decoration:none;line-height:1.2}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;min-height:36px;border-radius:var(--radius-pill);background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--green-900);text-decoration:none;line-height:1.2}
 .chip:hover{border-color:var(--green);color:var(--green-900)}
 .chip--coral{background:var(--coral-100);border-color:transparent;color:var(--coral-700)}
 .chip--green{background:var(--green-100);border-color:transparent;color:var(--green-800)}
@@ -196,7 +196,9 @@ small,.small{font-size:14px}
 .stat__value small{font-size:.5em;font-family:var(--font-body);font-weight:600;color:var(--coral-700);margin-left:4px;letter-spacing:0}
 .stat__label{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:8px}
 .stat__note{font-size:13px;color:var(--faint);margin-top:6px}
-.fact-strip{background:var(--green-900);color:#fff;border-radius:var(--radius-lg);padding:clamp(22px,3vw,36px) clamp(22px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:22px 28px;box-shadow:var(--shadow-lg)}
+.fact-strip{background:var(--green-900);color:#fff;border-radius:var(--radius-lg);padding:clamp(22px,3vw,36px) clamp(22px,3vw,40px);display:flex;flex-wrap:wrap;gap:22px 28px;box-shadow:var(--shadow-lg)}
+.fact-strip>div{flex:1 1 150px;min-width:0}
+.fact-strip .stat__value{font-size:clamp(24px,2.4vw,34px);line-height:1.1;overflow-wrap:anywhere}
 .fact-strip .stat__value{color:#fff}
 .fact-strip .stat__value small{color:var(--coral)}
 .fact-strip .stat__label{color:#A9C2B6}
@@ -301,7 +303,7 @@ td b{color:var(--green-900);font-weight:600}
 .video-filter{margin-bottom:26px}
 
 /* ---------- testimonials ---------- */
-.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
 .testimonial{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;display:flex;flex-direction:column;gap:16px}
 .testimonial__quote{font-family:var(--font-display);font-size:21px;line-height:1.4;color:var(--green-900);margin:0}
 .testimonial__quote::before{content:"“";color:var(--coral);font-size:1.4em;line-height:0;margin-right:2px}
