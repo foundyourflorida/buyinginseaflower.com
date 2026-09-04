@@ -144,7 +144,7 @@ def footer():
       <div class="footer__brand">
         <a class="brand" href="/">{flower_mark(40)}<span class="brand__text"><span class="brand__name">Buying in <em>SeaFlower</em></span><span class="brand__sub">A Found Your Florida guide</span></span></a>
         <p>An independent, buyer-side guide to SeaFlower in Bradenton, Florida, written by a former builder insider who now represents buyers only.</p>
-        <a href="{SITE['brand_url']}" target="_blank" rel="noopener"><img class="footer__logo" src="{SITE['logo']}" alt="Found Your Florida Real Estate" width="150" height="80" loading="lazy"></a>
+        <a href="{SITE['brand_url']}" target="_blank" rel="me noopener"><img class="footer__logo" src="{SITE['logo']}" alt="Found Your Florida Real Estate" width="150" height="80" loading="lazy"></a>
       </div>
       <div><h4>Explore</h4><ul>{explore}</ul></div>
       <div><h4>Builders</h4><ul>{builders}</ul></div>
