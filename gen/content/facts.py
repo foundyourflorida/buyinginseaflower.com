@@ -17,7 +17,7 @@ COMMUNITY = {
     "lake": "19-acre Lake Flores inside the 25-acre Lake Flores Park",
     "trail": "2.5-mile multi-modal Lake Flores Trail for walking, biking and golf carts",
     "styles": ["Coastal", "West Indies", "Craftsman", "Transitional Farmhouse"],
-    "welcome_center": {"address": "4505 Flower Fields Trail, Bradenton, FL 34210", "hours": "Monday to Saturday 9:30 a.m. to 5:30 p.m., Sunday 12 to 6 p.m.", "url": "https://seaflower.com/contact/"},
+    "welcome_center": {"address": "4505 Flower Fields Trail, Bradenton, FL 34210", "phone": "(941) 212-0801", "hours": "Monday to Saturday 9:30 a.m. to 5:30 p.m., Sunday 12 to 6 p.m.", "url": "https://seaflower.com/contact/"},
     "official_site": "https://seaflower.com",
     "gated": "No gates appear on the site plan or in any developer material; streets are being turned over to Manatee County as public roads.",
     "age_restricted": "No. SeaFlower is an all-ages community marketed for every stage of life.",
