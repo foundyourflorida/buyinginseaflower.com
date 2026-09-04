@@ -1,3 +1,4 @@
+import re
 """Reusable HTML components. Every function returns an HTML string."""
 from .html import esc, md, slugify, attrs, strip_tags
 from .config import SITE, LEGAL
@@ -315,8 +316,15 @@ def faq_schema(pairs):
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": strip_tags(md(a, heading_ids=False))}} for q, a in pairs]}
 
 
-def speakable(text_html):
-    return f'<div class="speakable lead">{text_html}</div>'
+def speakable(html_text):
+    """Quick-answer block for AI/voice. Splits a leading <strong> sentence from the detail when it is a complete sentence."""
+    m = re.match(r"\s*<strong>(.*?)</strong>\s*(.*)", html_text, re.S)
+    if m:
+        lead, rest = m.group(1).strip(), m.group(2).strip()
+        complete = lead.endswith((".", ":", "!", "?")) or (rest[:1].isupper())
+        if complete and rest:
+            return f'<div class="speakable"><p class="speakable__lead">{lead}</p><p class="speakable__body">{rest}</p></div>'
+    return f'<p class="lead speakable">{html_text}</p>'
 
 
 def brokerage_tag():

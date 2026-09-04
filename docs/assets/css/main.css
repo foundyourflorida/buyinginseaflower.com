@@ -81,7 +81,6 @@ small,.small{font-size:14px}
 .center .eyebrow{justify-content:center}
 .lead{font-size:clamp(17px,1.3vw,19px);line-height:1.7;color:var(--text);max-width:66ch}
 .lead strong{font-weight:600;color:var(--green-900)}
-.speakable strong{display:block;margin-bottom:.4em;font-size:1.06em;line-height:1.5}
 .center .lead{margin-left:auto;margin-right:auto}
 .section-head{max-width:760px;margin-bottom:clamp(30px,4vw,52px)}
 .section-head.center{margin-left:auto;margin-right:auto}
@@ -481,3 +480,10 @@ th[aria-sort="descending"]::after{content:"↓";color:var(--coral-700)}
 tr[hidden]{display:none}
 
 @media (max-width:640px){table{font-size:13.5px}th,td{padding:9px 10px}th{font-size:11px}.table-wrap{position:relative}.table-wrap::after{content:"scroll →";position:absolute;right:8px;top:6px;font-size:10px;color:var(--faint);pointer-events:none}}
+
+.speakable{max-width:72ch}
+.speakable__lead{font-size:clamp(18px,1.7vw,21px);font-weight:600;color:var(--green-900);line-height:1.45;margin:0 0 14px;text-wrap:pretty}
+.speakable__body{font-size:clamp(16.5px,1.3vw,18px);line-height:1.75;color:var(--text);margin:0;text-wrap:pretty}
+.page-hero h1{margin-bottom:26px}
+.page-hero__meta{margin-top:30px}
+.page-hero .disclosure{margin-top:26px}

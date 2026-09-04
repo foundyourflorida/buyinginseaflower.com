@@ -42,7 +42,7 @@ def pages():
     qmi_table = (f'<div class="table-wrap"><table data-sortable><thead><tr><th>Builder</th><th>Plan</th><th>Address</th><th class=num>Price</th><th class=num>Sq ft</th><th>Beds / baths</th><th>Status</th><th></th></tr></thead><tbody>{"".join(qrow)}</tbody></table></div>'
                  f'<p class="table-note">{len(qmis)} homes as listed by the builders on {esc(F.AS_OF)}. Inventory changes weekly; some builders show a "was" price, which is a negotiation signal, not a floor.</p>')
     intro = (f"<strong>SeaFlower offers {len(plans)} floor plans from five builders, from about {min(sqfts):,} to {max(sqfts):,} square feet, with published base prices from "
-             f"${min(prices):,} to ${max(prices):,}</strong> (Issa Homes estate plans are priced on request above $1.25 million). {len(qmis)} quick move-in homes were listed on {F.AS_OF}. "
+             f"${min(prices):,} to ${max(prices):,}.</strong> Issa Homes estate plans are priced on request above $1.25 million. {len(qmis)} quick move-in homes were listed on {F.AS_OF}. "
              "Every price below is quoted exactly as the builder publishes it and excludes lot premiums, options and closing costs.")
     PRICE_MD = """
 ## What "base price" leaves out

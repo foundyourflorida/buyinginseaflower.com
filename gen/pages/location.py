@@ -117,8 +117,8 @@ FAQ = [
 
 def pages():
     short = by_id("XMQCzXI7Sow")
-    intro = ("<strong>SeaFlower is in west Bradenton, Florida 34210, on the coastal mainland of Manatee County</strong>, south of Cortez Road West and west of 75th Street West, "
-             "about 3.2 miles from the beach at Anna Maria Island, 8 miles from Sarasota-Bradenton airport, 13 miles from downtown Sarasota and 37 miles from Tampa International. "
+    intro = ("<strong>SeaFlower is in west Bradenton, Florida 34210, on the coastal mainland of Manatee County, about 3.2 miles from the beach at Anna Maria Island.</strong> "
+             "It sits south of Cortez Road West and west of 75th Street West, 8 miles from Sarasota-Bradenton airport, 13 miles from downtown Sarasota and 37 miles from Tampa International. "
              "IMG Academy is next door. FEMA maps the interior of the site as Zone X. Zoned schools are Sea Breeze Elementary, W.D. Sugg or Electa Lee Middle, and Bayshore High.")
     toc_items = [("map", "Map and drive times"), ("what-west-bradenton-is-and-is-not", "West Bradenton"), ("beaches-and-the-honest-traffic-note", "Beaches and traffic"), ("schools", "Schools"), ("healthcare", "Healthcare"), ("shopping-and-dining", "Shopping and dining"), ("getting-around", "Getting around"), ("flood-zone-evacuation-level-and-elevation", "Flood zone and evacuation"), ("property-taxes-and-insurance", "Taxes and insurance")]
     body = f"""
