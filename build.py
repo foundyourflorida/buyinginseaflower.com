@@ -8,7 +8,9 @@ sys.path.insert(0, ROOT)
 from gen import config, layout  # noqa: E402
 from gen.html import strip_tags  # noqa: E402
 
-OUT = os.path.join(ROOT, "docs")
+FINAL_OUT = os.path.join(ROOT, "docs")
+OUT = os.path.join(ROOT, ".docs-build")  # temporary; swapped into docs/ only when the whole build succeeds
+BUILD_TMP = True
 STATIC = os.path.join(ROOT, "static")
 PAGE_MODULES = ["home", "community", "location", "builders", "homes", "costs", "faq", "videos", "blog", "about", "book", "buyers_guide", "guide_landing", "guide_print", "legal", "misc", "admin"]
 
@@ -161,7 +163,10 @@ def main():
                                           "background_color": "#FAF0DE", "theme_color": "#1E5540",
                                           "icons": [{"src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/assets/images/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, indent=1))
     total = sum(1 for _ in pages)
-    print(f"  {total} pages → {OUT}  (assets v{layout.VERSION})")
+    if os.path.exists(FINAL_OUT):
+        shutil.rmtree(FINAL_OUT)
+    os.rename(OUT, FINAL_OUT)
+    print(f"  {total} pages → {FINAL_OUT}  (assets v{layout.VERSION})")
 
 
 if __name__ == "__main__":
