@@ -10,7 +10,7 @@ from gen.html import strip_tags  # noqa: E402
 
 OUT = os.path.join(ROOT, "docs")
 STATIC = os.path.join(ROOT, "static")
-PAGE_MODULES = ["home", "community", "location", "builders", "homes", "costs", "faq", "videos", "blog", "about", "book", "buyers_guide", "guide_print", "legal", "misc", "admin"]
+PAGE_MODULES = ["home", "community", "location", "builders", "homes", "costs", "faq", "videos", "blog", "about", "book", "buyers_guide", "guide_landing", "guide_print", "legal", "misc", "admin"]
 
 
 def file_hash(*paths):

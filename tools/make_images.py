@@ -86,10 +86,34 @@ def icon_png(path, size):
     im.save(path, "PNG", optimize=True)
 
 
+def guide_cover(path):
+    W, H = 900, 1170
+    im = Image.new("RGB", (W, H), CREAM)
+    d = ImageDraw.Draw(im)
+    d.rectangle([0, 0, W, 300], fill=GREEN_DARK)
+    d.rectangle([0, 300, W, 314], fill=CORAL)
+    serif = font(["Georgia Bold.ttf", "Georgia-Bold.ttf", "Times New Roman Bold.ttf"], 78)
+    serif_sm = font(["Georgia.ttf", "Times New Roman.ttf"], 34)
+    sans = font(["HelveticaNeue.ttc", "Helvetica.ttc", "Arial.ttf"], 24)
+    sans_b = font(["HelveticaNeue.ttc", "Helvetica.ttc", "Arial Bold.ttf"], 22)
+    d.text((70, 80), "BUYING IN SEAFLOWER", font=sans_b, fill=CORAL)
+    d.text((70, 130), "A Found Your Florida guide", font=sans, fill=(191, 210, 200))
+    d.text((70, 380), "The SeaFlower", font=serif, fill=GREEN_DARK)
+    d.text((70, 470), "Buyer's Guide", font=serif, fill=(185, 77, 60))
+    y = 600
+    for line in ["All five builders, prices and lot sizes", "HOA, CDD, tax and insurance worksheet", "Lot, phase and incentive notes", "Contract and inspection checklist", "Out-of-state buying timeline"]:
+        d.ellipse([70, y + 10, 86, y + 26], fill=GREEN)
+        d.text((104, y), line, font=serif_sm, fill=MUTED); y += 58
+    draw_flower(d, 700, 950, 120)
+    d.text((70, 1060), "2026 edition  ·  Trenton Miller, MBA  ·  LPT Realty, LLC", font=sans, fill=GREEN)
+    im.save(path, "JPEG", quality=88, optimize=True)
+
+
 def run(out_dir):
     img_dir = os.path.join(out_dir, "assets", "images")
     os.makedirs(img_dir, exist_ok=True)
     og_image(os.path.join(img_dir, "og-default.jpg"))
+    guide_cover(os.path.join(img_dir, "guide-cover.jpg"))
     icon_png(os.path.join(out_dir, "apple-touch-icon.png"), 180)
     icon_png(os.path.join(img_dir, "icon-512.png"), 512)
     icon_png(os.path.join(img_dir, "icon-192.png"), 192)

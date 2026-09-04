@@ -227,10 +227,12 @@
           form.dataset.sent = '1';
           form.reset();
           show('ok', form.getAttribute('data-success') || 'Got it. Taking you to the next step…');
+          if (form.hasAttribute('data-no-conversion')) { d.dispatchEvent(new CustomEvent('bis:lead-sent', { detail: { form: form.id } })); return; }
           /* GA4 conversion: non-personal parameters only, sent once per confirmed submission, then redirect. */
           var next = form.getAttribute('data-redirect') || '/thank-you/';
           var redirected = false;
           function go() { if (redirected) return; redirected = true; location.href = next; }
+          d.dispatchEvent(new CustomEvent('bis:lead-sent', { detail: { form: form.id } }));
           if (typeof w.gtag === 'function') {
             w.gtag('event', 'generate_lead', {
               method: 'website_form', form_id: form.id || 'lead', form_name: form.getAttribute('data-form-name') || 'lead_form',
