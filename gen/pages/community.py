@@ -5,8 +5,8 @@ from ..content.videos import by_id
 from ..html import esc, md
 
 INTRO = (
-    "<strong>SeaFlower&reg; is a 1,175-acre master-planned coastal village in west Bradenton, Manatee County, Florida (ZIP 34210)</strong>, "
-    "south of Cortez Road West and west of 75th Street West, about three miles from Anna Maria Island. Lake Flores Land Company is developing it "
+    "<strong>SeaFlower&reg; is a 1,175-acre master-planned coastal village in west Bradenton, Manatee County, Florida (ZIP 34210), "
+    "south of Cortez Road West and west of 75th Street West, about three miles from Anna Maria Island.</strong> Lake Flores Land Company is developing it "
     "on the former Preston family flower farm. Phase One covers 400 acres with 1,063 homes from five builders, a resident-only amenity campus "
     "called The Garden Club, a 2.5-mile golf-cart trail around the 19-acre Lake Flores, and a Publix-anchored Village Center with apartments "
     "and a hotel. Full buildout is planned at about 4,000 homes."
