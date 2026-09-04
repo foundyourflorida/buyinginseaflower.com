@@ -64,7 +64,7 @@ def pages():
   var gate=document.getElementById('admin-gate'), err=document.getElementById('admin-err'), status=document.getElementById('admin-status');
   function sha(s){{ return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(function(b){{ return Array.from(new Uint8Array(b)).map(function(x){{return x.toString(16).padStart(2,'0');}}).join(''); }}); }}
   function unlock(){{
-    gate.hidden=true; status.textContent='Signed in. This page is private and not indexed.';
+    gate.hidden=true; err.className='form__status'; err.textContent=''; status.textContent='Signed in. This page is private and not indexed.';
     var t=document.getElementById('admin-dash'); document.querySelector('main').appendChild(t.content.cloneNode(true));
     try{{ sessionStorage.setItem('bis-admin','1'); }}catch(e){{}}
     init();
