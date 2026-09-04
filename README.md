@@ -39,3 +39,18 @@ Booking uses the Calendly inline widget on `/book/` (`SITE["booking_url"]`). Ana
 ## Generated files
 
 `sitemap.xml`, `robots.txt` (AI crawlers allowed), `llms.txt` and `llms-full.txt` (plain-text mirror for AI search), `feed.xml` (blog RSS), `404.html`, `CNAME`, `site.webmanifest`, favicons and the OG image are all produced by `build.py`.
+
+## Conversion tracking (GA4 → Google Ads)
+
+GA4 measurement ID `G-N1PEN4WMZ7` is installed once per page in `gen/layout.py` (`gtag.js` + one `config`). Add `?ga_debug=1` to any URL to send events to GA4 DebugView.
+
+Two conversion events are emitted from `static/js/main.js`, with non-personal parameters only:
+
+| Event | Fires when | Parameters |
+|---|---|---|
+| `generate_lead` | FormSubmit returns `{"success":"true"}` for a lead form (never on click, validation error, network error, or on `/thank-you/`) | `method=website_form`, `form_id`, `form_name`, `page_path` |
+| `book_appointment` | A `message` from origin `https://calendly.com` with `event: "calendly.event_scheduled"` on `/book/` | `method=calendly`, `event_type=30min_strategy_call`, `page_path` |
+
+Deduplication: a form is marked `data-sent` after one confirmed success and further submits are ignored; the event is sent with `transport_type: beacon` and the redirect to `/thank-you/` happens on `event_callback` (1.2 s fallback). Calendly bookings are keyed by invitee URI in `sessionStorage`, so one booking counts once. No name, email, phone or message text is ever passed to `gtag`.
+
+To import into Google Ads: GA4 Admin → Events → mark `generate_lead` and `book_appointment` as key events; then Google Ads → Goals → Conversions → New → Import → Google Analytics 4 → select both. Do not use a URL-based (`/thank-you/`) conversion; the event import is the reliable path.
