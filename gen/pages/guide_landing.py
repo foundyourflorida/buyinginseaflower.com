@@ -131,8 +131,7 @@ def pages():
       document.getElementById('result-lock').style.display = 'none';
       document.getElementById('guide-quiz').style.display = 'none';
       document.getElementById('report').classList.add('is-active');
-      var n = document.getElementById('gq-name').value, em = document.getElementById('gq-email').value;
-      document.querySelectorAll('.copy-name').forEach(function(x){ x.value = n; }); document.querySelectorAll('.copy-email').forEach(function(x){ x.value = em; });
+      document.getElementById('report').scrollIntoView({ block: 'start' });
     }
   });
   var f1 = document.getElementById('guide-quiz');
