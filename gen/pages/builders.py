@@ -56,7 +56,7 @@ def builder_page(b):
     price_low = "${:,}".format(b["price_low"]) if b.get("price_low") else ""
     summary = (f"<strong>{esc(b['name'])} at SeaFlower:</strong> {esc(b['tagline'])} {esc(b['price_phrase'])}. "
                f"{plan_count} floor plans" + (f" on {esc(', '.join(b['lot_widths']))} lots" if b.get("lot_widths") else "") +
-               f", {esc(b['sqft_range'])} sq ft, {esc(b['beds'])} bedrooms. Sales office: {esc(b['sales_office'].get('address', ''))}, {esc(b['sales_office'].get('phone', ''))}. Verified {esc(b['verified'])}.")
+               f", {esc(b['sqft_range'])} sq ft, {esc(b['beds'])} bedrooms. Sales office: {esc(b['sales_office'].get('address', ''))}. Verified {esc(b['verified'])}.")
     collections_html = ""
     for c in b["collections"]:
         cid = "collection-" + re.sub(r"[^a-z0-9]+", "-", c["name"].lower()).strip("-")
@@ -84,7 +84,7 @@ def builder_page(b):
   {eyebrow("Builder profile · " + TIER_LABEL.get(b.get("tier", ""), "") + " tier")}
   <h1>{esc(b['name'])} at SeaFlower: <em style="font-style:italic;color:var(--coral-700)">plans, prices and what to know before you sign</em></h1>
   {speakable(summary)}
-  <div class="page-hero__meta">{updated_badge(b['verified'])}<span>{esc(so.get('phone', ''))}</span><span><a href="{esc(b['urls'].get('community', '#'))}" target="_blank" rel="noopener nofollow">Builder&rsquo;s SeaFlower page</a></span></div>
+  <div class="page-hero__meta">{updated_badge(b['verified'])}<span><a href="{esc(b['urls'].get('community', '#'))}" target="_blank" rel="noopener nofollow">Builder&rsquo;s SeaFlower page</a></span></div>
   {independent_note("Builder names are used to identify the builder only; plan and price data are quoted from the builder's public pages and belong to the builder.")}
 </div></section>
 
@@ -106,7 +106,7 @@ def builder_page(b):
     {qmi_table(b) if qmi_count else "<p>No quick move-in homes were listed by the builder on " + esc(b['verified']) + ". Inventory turns over quickly; ask me for the current list.</p>"}
 
     <h2 id="model" style="margin-top:2em">Model homes and sales office</h2>
-    <div class="card"><p style="margin:0 0 8px"><b>{esc(so.get('address', ''))}</b> · {esc(so.get('phone', ''))}</p><p style="margin:0 0 8px">{esc(so.get('hours', '') or 'Hours not published')}</p>{('<p style="margin:0 0 8px">On-site consultants as published: ' + esc(consultants) + '</p>') if consultants else ''}{('<ul style="margin:8px 0 0">' + models + '</ul>') if models else ''}</div>
+    <div class="card"><p style="margin:0 0 8px"><b>{esc(so.get('address', ''))}</b></p><p style="margin:0 0 8px">{esc(so.get('hours', '') or 'Hours not published')}</p>{('<p style="margin:0 0 8px">On-site consultants as published: ' + esc(consultants) + '</p>') if consultants else ''}{('<ul style="margin:8px 0 0">' + models + '</ul>') if models else ''}</div>
     {callout("If you plan to visit a model, tell me first. Builders register the agent who introduces you, and some will not let you add representation after a first unaccompanied visit. A five-minute call protects your options; it costs nothing.", "warn", "Before your first visit")}
 
     <h2 id="incentives" style="margin-top:2em">Incentives and promotions</h2>
@@ -166,7 +166,7 @@ INDEX_FAQ = [
 def index_page():
     rows = []
     for b in BUILDERS:
-        rows.append((f'<a href="/builders/{b["slug"]}/"><b>{esc(b["name"])}</b></a>', TIER_LABEL.get(b.get("tier", ""), ""), esc(", ".join(b["home_types"])[:70]), esc(", ".join(b["lot_widths"])) if b.get("lot_widths") else "attached", esc(b["sqft_range"]), esc(b["beds"]), esc(b["price_phrase"][:60]), esc(b["sales_office"].get("phone", ""))))
+        rows.append((f'<a href="/builders/{b["slug"]}/"><b>{esc(b["name"])}</b></a>', TIER_LABEL.get(b.get("tier", ""), ""), esc(", ".join(b["home_types"])[:70]), esc(", ".join(b["lot_widths"])) if b.get("lot_widths") else "attached", esc(b["sqft_range"]), esc(b["beds"]), esc(b["price_phrase"][:60])))
     cards = "".join(
         f'<a class="card card--hover card--link" href="/builders/{b["slug"]}/"><div class="card__kicker">{TIER_LABEL.get(b.get("tier", ""), "")} tier · {esc(", ".join(b["lot_widths"])) if b.get("lot_widths") else "attached"}</div><h3>{esc(b["name"])}</h3><p>{esc(b["tagline"])}</p><p style="color:var(--green-900);font-weight:600;margin-top:10px">{esc(b["price_phrase"][:70])}</p><span class="link-arrow">Full profile</span></a>'
         for b in BUILDERS)
@@ -195,7 +195,7 @@ def index_page():
 </div></section>
 
 <section class="section section--flush-top reveal"><div class="container">
-  {table(["Builder", "Tier", "Product", "Lots", "Sq ft", "Beds", "Starting price (as phrased)", "Phone"], rows, note="Prices as published by each builder on " + esc(F.AS_OF) + ". Exclude lot premiums and options. Click a builder for plans, quick move-ins, incentives and watch-outs.")}
+  {table(["Builder", "Tier", "Product", "Lots", "Sq ft", "Beds", "Starting price (as phrased)"], rows, note="Prices as published by each builder on " + esc(F.AS_OF) + ". Exclude lot premiums and options. Click a builder for plans, quick move-ins, incentives and watch-outs.")}
 </div></section>
 
 <section class="section reveal"><div class="container">

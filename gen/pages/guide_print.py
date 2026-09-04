@@ -41,7 +41,7 @@ CHECKLIST = """
 
 
 def pages():
-    b_rows = [(b["name"], TIER_LABEL.get(b.get("tier", ""), ""), ", ".join(b["home_types"])[:60], ", ".join(b["lot_widths"]) if b.get("lot_widths") else "attached", b["sqft_range"], b["price_phrase"][:60], b["sales_office"].get("phone", "")) for b in BUILDERS]
+    b_rows = [(b["name"], TIER_LABEL.get(b.get("tier", ""), ""), ", ".join(b["home_types"])[:60], ", ".join(b["lot_widths"]) if b.get("lot_widths") else "attached", b["sqft_range"], b["price_phrase"][:60]) for b in BUILDERS]
     plan_rows = [(b["short"], p["name"], c.get("lot_width", ""), p.get("sqft", ""), p.get("beds", ""), p.get("baths", ""), p.get("price", "")) for b, c, p in all_plans()]
     ex_rows = []
     for label, price, hoa, cdd, ins in EXAMPLES:
@@ -66,7 +66,7 @@ def pages():
 
 <section class="print-section">
   <h2>2. The five builders</h2>
-  {table(["Builder", "Tier", "Product", "Lots", "Sq ft", "Starting price (as phrased)", "Phone"], b_rows)}
+  {table(["Builder", "Tier", "Product", "Lots", "Sq ft", "Starting price (as phrased)"], b_rows)}
   <h3>Every floor plan and base price</h3>
   {table(["Builder", "Plan", "Lot", "Sq ft", "Beds", "Baths", "Base price"], plan_rows, numeric_cols=(3, 6), note="As published by the builders on " + F.AS_OF + "; excludes lot premiums and options.")}
 </section>

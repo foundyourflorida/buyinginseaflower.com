@@ -17,7 +17,7 @@ COMMUNITY = {
     "lake": "19-acre Lake Flores inside the 25-acre Lake Flores Park",
     "trail": "2.5-mile multi-modal Lake Flores Trail for walking, biking and golf carts",
     "styles": ["Coastal", "West Indies", "Craftsman", "Transitional Farmhouse"],
-    "welcome_center": {"address": "4505 Flower Fields Trail, Bradenton, FL 34210", "phone": "(941) 212-0801", "hours": "Monday to Saturday 9:30 a.m. to 5:30 p.m., Sunday 12 to 6 p.m.", "url": "https://seaflower.com/contact/"},
+    "welcome_center": {"address": "4505 Flower Fields Trail, Bradenton, FL 34210", "hours": "Monday to Saturday 9:30 a.m. to 5:30 p.m., Sunday 12 to 6 p.m.", "url": "https://seaflower.com/contact/"},
     "official_site": "https://seaflower.com",
     "gated": "No gates appear on the site plan or in any developer material; streets are being turned over to Manatee County as public roads.",
     "age_restricted": "No. SeaFlower is an all-ages community marketed for every stage of life.",
@@ -147,11 +147,11 @@ DRIVE_TIMES = [
 DRIVE_TIMES_SOURCE = "Drive times as published by Cardel Homes for its SeaFlower sales center; typical off-peak traffic."
 
 BUILDERS_SUMMARY = [
-    {"slug": "mi-homes", "name": "M/I Homes", "tier": "Entry", "product": "Townhomes (Row Homes) and twin villas (Village Homes)", "lots": "Attached, Phase N1", "sqft": "1,486–2,406", "beds": "2–3", "price": "Priced from $399,999", "phone": "(941) 225-2111", "office": "8015 SeaFlower Pkwy"},
-    {"slug": "pulte-homes", "name": "Pulte Homes", "tier": "Entry to mid", "product": "Single-family in the Scenic, Veranda and Distinctive series", "lots": "42' to 50'", "sqft": "1,405–2,369+", "beds": "2–5", "price": "From $404,990", "phone": "(941) 352-4141", "office": "7634 Addison Ave."},
-    {"slug": "david-weekley-homes", "name": "David Weekley Homes", "tier": "Mid", "product": "Bungalow Homes (rear-load) and Classic Homes", "lots": "45' and 60'", "sqft": "1,615–3,777", "beds": "2–5", "price": "From the $500s (Bungalow) and the $600s (Classic)", "phone": "(941) 306-4384", "office": "7635 Addison Ave."},
-    {"slug": "cardel-homes", "name": "Cardel Homes", "tier": "Upper", "product": "Cottage and Classic single-family, natural gas, ADU options", "lots": "50' and 60'", "sqft": "1,909–3,122", "beds": "3–5", "price": "From the $500s", "phone": "(941) 207-6013", "office": "4521 Flower Fields Trail"},
-    {"slug": "issa-homes", "name": "Issa Homes", "tier": "Estate", "product": "Estate homes on lakefront lots", "lots": "80'", "sqft": "2,905–3,474+", "beds": "3–5", "price": "From $1,250,000, excluding homesite premium", "phone": "(941) 491-7879", "office": "Hemingway model, SeaFlower"},
+    {"slug": "mi-homes", "name": "M/I Homes", "tier": "Entry", "product": "Townhomes (Row Homes) and twin villas (Village Homes)", "lots": "Attached, Phase N1", "sqft": "1,486–2,406", "beds": "2–3", "price": "Priced from $399,999", "office": "8015 SeaFlower Pkwy"},
+    {"slug": "pulte-homes", "name": "Pulte Homes", "tier": "Entry to mid", "product": "Single-family in the Scenic, Veranda and Distinctive series", "lots": "42' to 50'", "sqft": "1,405–2,369+", "beds": "2–5", "price": "From $404,990", "office": "7634 Addison Ave."},
+    {"slug": "david-weekley-homes", "name": "David Weekley Homes", "tier": "Mid", "product": "Bungalow Homes (rear-load) and Classic Homes", "lots": "45' and 60'", "sqft": "1,615–3,777", "beds": "2–5", "price": "From the $500s (Bungalow) and the $600s (Classic)", "office": "7635 Addison Ave."},
+    {"slug": "cardel-homes", "name": "Cardel Homes", "tier": "Upper", "product": "Cottage and Classic single-family, natural gas, ADU options", "lots": "50' and 60'", "sqft": "1,909–3,122", "beds": "3–5", "price": "From the $500s", "office": "4521 Flower Fields Trail"},
+    {"slug": "issa-homes", "name": "Issa Homes", "tier": "Estate", "product": "Estate homes on lakefront lots", "lots": "80'", "sqft": "2,905–3,474+", "beds": "3–5", "price": "From $1,250,000, excluding homesite premium", "office": "Hemingway model, SeaFlower"},
 ]
 
 SOURCES_COMMUNITY = [
