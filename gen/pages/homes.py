@@ -35,10 +35,12 @@ def pages():
         return re.sub(r"\s+", " ", name)[:22]
     prow = []
     for b, c, p in plans:
+        stm = re.match(r"\d+", str(p.get("stories", "")))
+        st = stm.group() if stm else "—"
         baths = tidy(p.get("baths", ""), 10) + (f" + {tidy(p['half_baths'], 4)}½" if p.get("half_baths") and p["half_baths"] not in ("", "0") else "")
         link = f'<a href="{esc(p["url"])}" target="_blank" rel="noopener nofollow">plan</a>' if p.get("url") else ""
         prow.append(f'<tr data-filter-group="plan" data-cat="{b["slug"]}"><td><a href="/builders/{b["slug"]}/">{esc(b["short"])}</a></td><td><b>{esc(p["name"])}</b></td><td>{esc(coll(c["name"]))}</td><td>{esc(tidy(c.get("lot_width", ""), 12))}</td>'
-                    f'<td class=num data-sort="{num(p.get("sqft", ""))}" title="{esc(p.get("sqft", ""))}">{esc(short_sqft(p.get("sqft", "")))}</td><td>{esc((re.match(r"\d+", str(p.get("stories", "")) or "") or type("m", (), {"group": lambda self: "—"})()).group())}</td><td>{esc(tidy(p.get("beds", ""), 8))}</td><td>{esc(baths)}</td><td>{esc(tidy(p.get("garage", ""), 14))}</td><td class=num data-sort="{num(p.get("price", "")) if p.get("price", "").strip().startswith("$") else 0}" title="{esc(p.get("price", ""))}">{esc(short_price(p.get("price", "")))}</td><td>{link}</td></tr>')
+                    f'<td class=num data-sort="{num(p.get("sqft", ""))}" title="{esc(p.get("sqft", ""))}">{esc(short_sqft(p.get("sqft", "")))}</td><td>{esc(st)}</td><td>{esc(tidy(p.get("beds", ""), 8))}</td><td>{esc(baths)}</td><td>{esc(tidy(p.get("garage", ""), 14))}</td><td class=num data-sort="{num(p.get("price", "")) if p.get("price", "").strip().startswith("$") else 0}" title="{esc(p.get("price", ""))}">{esc(short_price(p.get("price", "")))}</td><td>{link}</td></tr>')
     qrow = []
     for b, q in qmis:
         link = f'<a href="{esc(q["url"])}" target="_blank" rel="noopener nofollow">listing</a>' if q.get("url") else ""

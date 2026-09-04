@@ -39,6 +39,10 @@ def nice_date(iso):
         return iso
 
 
+def clean_addr(a):
+    return re.sub(r",?\s*Bradenton,?\s*FL\s*34210", "", a or "").strip(" ,.")
+
+
 def clean_name(n):
     return re.sub(r"^SeaFlower\s*[–-]\s*", "", n or "").strip()
 
@@ -95,7 +99,7 @@ def builder_page(b):
         collections_html += (f'<h3 id="{cid}">{esc(clean_name(c["name"]))} <span style="font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--muted)">· {esc(lot)} · {esc(tidy(c.get("price_phrase", ""), 40))}</span></h3>'
                              f'<p class="note">{len(c["plans"])} plans' + (f' on {esc(lot)} homesites' if lot and lot != "—" else "") + f', {esc(tidy(c.get("price_phrase", ""), 40).lower())}. Base prices as published by the builder' + (f'; <a href="{esc(c["url"])}" target="_blank" rel="noopener nofollow">collection page</a>' if c.get("url") else "") + '.</p>' + plan_table(c))
     so = b["sales_office"]
-    models = "".join(f"<li><b>{esc(m['name'])}</b> ({esc(clean_name(m.get('collection', '')))}) · {esc(re.sub(r',?\s*Bradenton,?\s*FL\s*34210', '', m.get('address', '')))}" + (f" · opened {esc(nice_date(m['opened']))}" if m.get("opened") else "") + (f" · {esc(m['sqft'])} sq ft" if m.get("sqft") else "") + "</li>" for m in b.get("models", []))
+    models = "".join(f"<li><b>{esc(m['name'])}</b> ({esc(clean_name(m.get('collection', '')))}) · {esc(clean_addr(m.get('address', '')))}" + (f" · opened {esc(nice_date(m['opened']))}" if m.get("opened") else "") + (f" · {esc(m['sqft'])} sq ft" if m.get("sqft") else "") + "</li>" for m in b.get("models", []))
     consultants = ", ".join(so.get("consultants", [])) if so.get("consultants") else ""
     inc = b.get("incentives", [])
     inc_html = "".join(f'<li>{badge(i.get("status", ""))} <b>{esc(i["title"])}</b> <span class="small" style="color:var(--faint)">(as of {esc(i.get("as_of", ""))})</span><br><span class="small">{esc(i.get("detail", ""))[:420]}</span>' + (f' <a class="small" href="{esc(i["url"])}" target="_blank" rel="noopener nofollow">source</a>' if i.get("url") else "") + "</li>" for i in inc) or "<li>No incentive is currently published by the builder for SeaFlower. That does not mean nothing is available; it means it is negotiated on site.</li>"
