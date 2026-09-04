@@ -7,7 +7,10 @@ from ..html import esc, md
 
 
 def post_page(p, others):
-    v = by_id(p["video"]) if p.get("video") else None
+    try:
+        v = by_id(p["video"]) if p.get("video") else None
+    except Exception:
+        v = None
     related = "".join(f'<li><a href="/blog/{o["slug"]}/">{esc(o["title"])}</a></li>' for o in others[:4])
     body = f"""
 <section class="page-hero"><div class="container container--narrow">

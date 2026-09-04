@@ -420,3 +420,6 @@ Sources: seaflower.com news posts and press releases (2025–2026); Bradenton Ma
 for p in POSTS:
     p.setdefault("date", DATE)
     p.setdefault("date_display", DATE_DISPLAY)
+
+from .posts2 import POSTS2  # noqa: E402
+POSTS = POSTS + POSTS2
