@@ -117,6 +117,7 @@ small,.small{font-size:14px}
 .nav-toggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:10px;padding:8px 10px;cursor:pointer;color:var(--green-900)}
 .nav-toggle svg{display:block}
 @media (max-width:1180px){.nav a{padding:10px 9px;font-size:14px}}
+@media (max-width:1120px){.nav{display:none}.nav-toggle{display:inline-flex}}
 @media (max-width:960px){
   .nav{display:none}.nav-toggle{display:inline-flex}.header__cta .btn{display:none}
   .brand__name{font-size:21px}
@@ -167,11 +168,11 @@ small,.small{font-size:14px}
 .hero__meta svg{width:16px;height:16px;color:var(--green-600)}
 .hero__media{position:relative}
 .hero__media .lite-yt{box-shadow:var(--shadow-lg);border-radius:var(--radius-lg)}
-.hero__badge{position:absolute;left:-14px;bottom:-16px;background:#fff;border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;max-width:300px}
+.hero__badge{margin-top:16px;background:#fff;border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow-sm);border:1px solid var(--line);display:flex;align-items:center;gap:14px}
 .hero__badge img{width:48px;height:48px;border-radius:50%;object-fit:cover}
 .hero__badge strong{display:block;font-size:14px;color:var(--green-900)}
-.hero__badge span{font-size:12.5px;color:var(--muted);line-height:1.35;display:block}
-@media (max-width:900px){.hero__badge{position:static;margin-top:18px;max-width:none}}
+.hero__badge span{font-size:13px;color:var(--muted);line-height:1.4;display:block}
+
 .page-hero{padding:clamp(40px,6vw,80px) 0 clamp(32px,4vw,56px);position:relative;overflow:hidden}
 .page-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 420px at 90% -20%,rgba(111,175,166,.2),transparent 60%);pointer-events:none}
 .page-hero .container{position:relative}

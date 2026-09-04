@@ -58,7 +58,7 @@ def pages():
   </div>
 </div></section>
 
-<section class="section section--sm section--flush-top reveal"><div class="container">
+<section class="section section--sm section--flush-top reveal" id="trust"><div class="container">
   <div class="stats">
     {stat("7", "years inside builders", "Pulte, Del Webb and David Weekley")}
     {stat("$150M", "in new-home sales", "as a builder top producer", small="+")}
@@ -68,29 +68,29 @@ def pages():
   {independent_note()}
 </div></section>
 
-<section class="section bg-shell reveal"><div class="container">
+<section class="section bg-shell reveal" id="start-here"><div class="container">
   {section_head("Start here", "Six guides that answer what the model-home visit will not. Each one is dated and sourced.", "The guide")}
   <div class="grid grid-3">{start_cards}</div>
 </div></section>
 
-<section class="section reveal"><div class="container">
+<section class="section reveal" id="at-a-glance"><div class="container">
   {section_head("SeaFlower at a glance", eyebrow_text="The numbers")}
   {fact_strip([("1,175", "acres", "on the former Preston flower farm"), ("1,063", "Phase One homes", "784 released as of Apr 2026"), ("3.2", "miles to the beach", "per the site plan"), ("$400s", "to $1.5M+", "as published by builders"), ("Fall 2026", "The Garden Club opens", "Publix too"), ("270", "homes sold", "as of June 2026", )])}
 </div></section>
 
-<section class="section section--flush-top reveal"><div class="container">
+<section class="section section--flush-top reveal" id="builders"><div class="container">
   {section_head("Five builders, compared", "Prices as each builder phrases them on " + esc(F.AS_OF) + ". Click through for plans, quick move-ins, incentives and my take.", "Builders")}
   <div class="table-wrap"><table><thead><tr><th>Builder</th><th>Product</th><th>Lots</th><th>Sq ft</th><th>Starting price</th></tr></thead><tbody>{brow}</tbody></table></div>
   <div class="btn-row mt-3">{btn("Compare all five", "/builders/", "primary", icon_name="layers")}{btn("Every floor plan and price", "/homes/", "ghost")}</div>
 </div></section>
 
-<section class="section bg-green reveal"><div class="container">
+<section class="section bg-green reveal" id="videos"><div class="container">
   {section_head("Watch before you tour", "I toured every builder, put the community&rsquo;s own leadership on camera, and walked every Cardel model. Filmed for buyers, not for the builders.", "Videos")}
   <div class="grid grid-3">{video_cards}</div>
   <p class="mt-3">{btn("All videos", "/videos/", "white", icon_name="video")}</p>
 </div></section>
 
-<section class="section reveal"><div class="container"><div class="split">
+<section class="section reveal" id="guide"><div class="container"><div class="split">
   <div>
     {eyebrow("Free download")}
     <h2>The SeaFlower Buyer&rsquo;s Guide</h2>
@@ -100,13 +100,13 @@ def pages():
   <div>{lead_form("home-guide", "Send me the guide", "I email it personally, usually within a few hours.", submit="Email me the guide", interest="SeaFlower Buyer's Guide", compact=True, success="On its way. Check your inbox (and the promotions tab).")}</div>
 </div></div></section>
 
-<section class="section bg-sand reveal"><div class="container">
+<section class="section bg-sand reveal" id="why"><div class="container">
   {section_head("Why SeaFlower is different", "Three things that are true here and not true of most new communities on the Gulf Coast.", "The case for it", center=True)}
   <div class="grid grid-3">{why_cards}</div>
   <p class="center mt-3"><a class="link-arrow" href="/community/">The full community guide</a></p>
 </div></section>
 
-<section class="section reveal"><div class="container"><div class="split">
+<section class="section reveal" id="about"><div class="container"><div class="split">
   <div><div class="card" style="padding:14px;background:linear-gradient(160deg,#fff,var(--sand))"><img src="/assets/images/trenton-miller-800.jpg" alt="Trenton Miller, buyer's agent, Found Your Florida" width="800" height="800" style="border-radius:12px" loading="lazy"></div></div>
   <div>
     {eyebrow("Who is behind this")}
@@ -116,12 +116,12 @@ def pages():
   </div>
 </div></div></section>
 
-<section class="section bg-shell reveal"><div class="container">
+<section class="section bg-shell reveal" id="reviews"><div class="container">
   {section_head("What buyers say", eyebrow_text="Reviews", center=True)}
   <div class="testimonials">{"".join(testimonial(q, w, l) for q, w, l in TESTIMONIALS[:3])}</div>
 </div></section>
 
-<section class="section reveal"><div class="container container--narrow">
+<section class="section reveal" id="faq"><div class="container container--narrow">
   {section_head("Questions buyers ask first", eyebrow_text="FAQ")}
   {faq_html}
   <p class="mt-3"><a class="link-arrow" href="/faq/">All sixty-plus questions</a></p>
