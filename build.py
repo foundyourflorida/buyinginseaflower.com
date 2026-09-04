@@ -57,7 +57,7 @@ def sitemap(pages):
 def robots():
     d = config.SITE["domain"]
     return ("User-agent: *\nAllow: /\n\n# AI crawlers are welcome; this site is written to be cited.\n"
-            "User-agent: GPTBot\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: anthropic-ai\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\n"
+            "User-agent: GPTBot\nAllow: /\nUser-agent: OAI-SearchBot\nAllow: /\nUser-agent: ChatGPT-User\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: Claude-SearchBot\nAllow: /\nUser-agent: Claude-User\nAllow: /\nUser-agent: anthropic-ai\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Perplexity-User\nAllow: /\n"
             "User-agent: Google-Extended\nAllow: /\nUser-agent: Applebot-Extended\nAllow: /\nUser-agent: CCBot\nAllow: /\n\n"
             f"Sitemap: {d}/sitemap.xml\n")
 
@@ -73,7 +73,7 @@ def llms(pages):
             groups["Builders"].append(p)
         elif path.startswith("/blog/"):
             groups["Blog"].append(p)
-        elif path in ("/about/", "/book/", "/buyers-guide/", "/contact/"):
+        elif path in ("/about/", "/book/", "/buyers-guide/", "/contact/", "/privacy/", "/terms/", "/accessibility/"):
             groups["About & contact"].append(p)
         else:
             groups["Core guides"].append(p)

@@ -149,7 +149,7 @@ def builder_page(b):
                "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".speakable"]}}]
     return dict(
         path=f"/builders/{slug}/", title=f"{b['name']} at SeaFlower: Plans, Prices, Lot Sizes and Incentives (Sept 2026)",
-        description=(f"{b['name']} at SeaFlower, Bradenton: {b['price_phrase'].split('(')[0].split(';')[0].strip()[:70]}. {plan_count} floor plans, {b['sqft_range']} sq ft, {qmi_count} quick move-ins, model address, fees as quoted, incentives and watch-outs from a former builder insider.")[:300],
+        description=(f"{b['name']} at SeaFlower, Bradenton: {b['price_phrase'].split('(')[0].split(';')[0].strip()[:70]}. {plan_count} floor plans, {b['sqft_range'].split(' A/C')[0].replace(' sq ft', '')} sq ft, {qmi_count} quick move-ins, model address, fees as quoted, incentives and watch-outs from a former builder insider.")[:300],
         body=body, schema=schema, priority="0.8", changefreq="weekly", nav="/builders/", type="article", published=F.AS_OF_ISO, modified=F.AS_OF_ISO,
     )
 
