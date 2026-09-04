@@ -467,3 +467,5 @@ th.is-sortable::after{content:"↕";position:absolute;right:8px;top:50%;transfor
 th[aria-sort="ascending"]::after{content:"↑";color:var(--coral-700)}
 th[aria-sort="descending"]::after{content:"↓";color:var(--coral-700)}
 tr[hidden]{display:none}
+
+@media (max-width:640px){table{font-size:13.5px}th,td{padding:9px 10px}th{font-size:11px}.table-wrap{position:relative}.table-wrap::after{content:"scroll →";position:absolute;right:8px;top:6px;font-size:10px;color:var(--faint);pointer-events:none}}

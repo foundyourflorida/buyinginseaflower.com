@@ -56,7 +56,7 @@ def pages():
   <h1>The SeaFlower Buyer&rsquo;s Guide</h1>
   <p class="lead">Every builder, every fee, every question. Bradenton, Florida. Edition of {esc(F.AS_OF)}.</p>
   <p>By {SITE['agent_credentials']}, buyer&rsquo;s agent with {SITE['brokerage']}. Seven years on the builder side, including operations at David Weekley Homes, where he briefly oversaw SeaFlower.<br>{SITE['phone_display']} · {SITE['email']} · buyinginseaflower.com</p>
-  <p class="disclosure">{LEGAL['not_affiliated'][:420]}&hellip; Full disclosures at buyinginseaflower.com/terms/.</p>
+  <p class="disclosure">{LEGAL['not_affiliated']} Full disclosures at buyinginseaflower.com/terms/.</p>
 </section>
 
 <section class="print-section">

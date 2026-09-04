@@ -131,7 +131,11 @@
         rows.sort(function (a, b) {
           var ca = a.children[idx], cb = b.children[idx];
           var va = ca.getAttribute('data-sort'), vb = cb.getAttribute('data-sort');
-          if (va !== null && vb !== null) return (parseFloat(va) - parseFloat(vb)) * dir;
+          if (va !== null && vb !== null) {
+            var fa = parseFloat(va) || 0, fb = parseFloat(vb) || 0;
+            if (!fa && !fb) return 0; if (!fa) return 1; if (!fb) return -1;
+            return (fa - fb) * dir;
+          }
           var ta = ca.textContent.trim().toLowerCase(), tb = cb.textContent.trim().toLowerCase();
           var na = parseFloat(ta.replace(/[^0-9.]/g, '')), nb = parseFloat(tb.replace(/[^0-9.]/g, ''));
           if (!isNaN(na) && !isNaN(nb) && /^\$?\d/.test(ta) && /^\$?\d/.test(tb)) return (na - nb) * dir;
