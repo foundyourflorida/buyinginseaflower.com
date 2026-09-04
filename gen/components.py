@@ -153,7 +153,7 @@ def lite_yt(video_id, title, duration="", cls="", poster=None, start=None):
     st = f' data-start="{int(start)}"' if start else ""
     return (f'<div class="lite-yt {cls}" role="button" tabindex="0" data-id="{esc(video_id)}" data-title="{esc(title)}"{st} '
             f'style="background-image:url(\'{esc(poster)}\')" aria-label="Play video: {esc(title)}">'
-            f'<span class="lite-yt__play">{icon("play")}</span>{dur}<span class="lite-yt__title">{esc(title)}</span></div>')
+            f'<span class="lite-yt__play" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path d="M8 5.2v13.6c0 .8.9 1.3 1.6.9l10.6-6.8c.6-.4.6-1.4 0-1.8L9.6 4.3c-.7-.4-1.6.1-1.6.9z" fill="#fff"/></svg></span>{dur}<span class="lite-yt__title">{esc(title)}</span></div>')
 
 
 def video_card(v, show_desc=False):
