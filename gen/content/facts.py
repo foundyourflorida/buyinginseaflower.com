@@ -82,7 +82,7 @@ GARDEN_CLUB = [
 
 VILLAGE_CENTER = {
     "developers": "CASTO and Redstone Investments (their third partnership); apartments by Bradenton's NDC Development",
-    "size": "about 47 acres; roughly 140,000 sq ft of retail, dining and office in phase one (161,500 sq ft total leasable planned)",
+    "size": "About 47 acres; roughly 140,000 sq ft of retail, dining and office in phase one (161,500 sq ft total leasable planned)",
     "anchor": "Publix (about 50,000 sq ft) with a separate Publix Liquors, opening fall 2026",
     "tenants": ["Publix and Publix Liquors", "Dutch Bros Coffee (first in Manatee County)", "Whataburger", "Playa Bowls", "Potbelly Sandwich Works", "Dave's Hot Chicken", "Pecan Jacks", "Nothing Bundt Cakes", "PacDental / PDS Health", "Club Pilates", "Well Groomed Pets", "Glitz Nail Salon and Boutique", "Men's Luxe Barbershop", "PNC Bank", "Suncoast Credit Union", "Degree Wellness"],
     "apartments": "332 to 362 apartments (developer and CASTO figures differ)",
