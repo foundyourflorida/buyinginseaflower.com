@@ -206,6 +206,19 @@ TIMELINES = [
 ]
 
 
+FORM_NAMES = {"home-guide": "seaflower_buyer_guide", "guide": "seaflower_buyer_guide", "qmi-list": "quick_move_in_list", "faq-ask": "faq_question", "lead": "lead_form"}
+
+
+def form_name_for(form_id):
+    if form_id in FORM_NAMES:
+        return FORM_NAMES[form_id]
+    if form_id.startswith("ask-"):
+        return "builder_question"
+    if form_id.startswith("post-"):
+        return "blog_question"
+    return "lead_form"
+
+
 def lead_form(form_id="lead", heading="Get a SeaFlower insider on your side", sub=None, submit="Send my questions",
               success=None, interest="SeaFlower", message_label="What are you trying to figure out?", compact=False,
               redirect="/thank-you/", extra_hidden=None, card=True):
@@ -220,7 +233,7 @@ def lead_form(form_id="lead", heading="Get a SeaFlower insider on your side", su
     action = SITE.get("form_endpoint") or ""
     success = success or "Got it. I&rsquo;ll reach out personally, usually within a few hours. Want to skip ahead? Book a time on my calendar."
     form = (
-        f'<form class="form" id="{form_id}" data-lead-form action="{esc(action)}" method="post" data-redirect="{esc(redirect)}" data-success="{esc(success)}" novalidate>'
+        f'<form class="form" id="{form_id}" data-lead-form data-form-name="{esc(form_name_for(form_id))}" action="{esc(action)}" method="post" data-redirect="{esc(redirect)}" data-success="{esc(success)}" novalidate>'
         f'{hid}<input type="hidden" name="page" value=""><input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">'
         f'<div class="form__row"><div class="field"><label for="{form_id}-name">Name</label><input id="{form_id}-name" name="name" type="text" autocomplete="name" required placeholder="First and last"></div>'
         f'<div class="field"><label for="{form_id}-email">Email</label><input id="{form_id}-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div></div>'

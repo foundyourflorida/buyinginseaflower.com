@@ -58,8 +58,12 @@ def head(p):
     jsonld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":"))
     ga = ""
     if SITE.get("ga_id"):
-        ga = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={SITE["ga_id"]}"></script>'
-              f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());gtag("config","{SITE["ga_id"]}",{{anonymize_ip:true}});</script>')
+        snippet = (
+            '<script async src="https://www.googletagmanager.com/gtag/js?id=GA_ID"></script>'
+            '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());'
+            'gtag("config","GA_ID",{anonymize_ip:true,send_page_view:true,debug_mode:/[?&]ga_debug=1/.test(location.search)||undefined});</script>'
+        )
+        ga = snippet.replace("GA_ID", SITE["ga_id"])
     article_meta = ""
     if p.get("type") == "article":
         article_meta = (f'<meta property="article:published_time" content="{esc(p.get("published", SITE["updated_iso"]))}">'

@@ -89,7 +89,7 @@
   }
   if (faqSearch) {
     var t;
-    faqSearch.addEventListener('input', function () { clearTimeout(t); t = setTimeout(function () { applyFaq(); if (faqSearch.value.length > 2) track('faq_search', { search_term: faqSearch.value }); }, 120); });
+    faqSearch.addEventListener('input', function () { clearTimeout(t); t = setTimeout(function () { applyFaq(); if (faqSearch.value.length > 2) track('faq_search', { term_length: faqSearch.value.length }); }, 120); });
   }
   faqChips.forEach(function (chip) {
     chip.addEventListener('click', function (e) {
@@ -108,7 +108,7 @@
   }
   w.addEventListener('hashchange', openHash); openHash();
   d.querySelectorAll('details.faq').forEach(function (el) {
-    el.addEventListener('toggle', function () { if (el.open) track('faq_open', { question: (el.querySelector('summary') || {}).textContent || '' }); });
+    el.addEventListener('toggle', function () { if (el.open) track('faq_open', { faq_id: el.id || '' }); });
   });
 
   /* ---- generic chip filters: chips carry data-filter="group:value", items carry data-filter-group="group" data-cat="a b" ---- */
@@ -179,66 +179,92 @@
     var utm = getUTM(); Object.keys(utm).forEach(function (k) { var i = d.createElement('input'); i.type = 'hidden'; i.name = k; i.value = utm[k]; form.appendChild(i); });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (form.dataset.sending === '1' || form.dataset.sent === '1') return;   /* dedupe: one submission, one send */
       var hp = form.querySelector('input[name="_gotcha"]'); if (hp && hp.value) return;
       var consent = form.querySelector('input[name="consent"]');
       if (consent && !consent.checked) { show('err', 'Please tick the consent box so I can reply to you.'); consent.focus(); return; }
-      if (!endpoint || endpoint.indexOf('YOUR_FORM_ID') !== -1) {
-        /* No endpoint configured yet: fall back to email so no lead is lost. */
-        var fd = new FormData(form); var lines = [];
-        fd.forEach(function (v, k) { if (k.charAt(0) !== '_' && v) lines.push(k + ': ' + v); });
-        location.href = 'mailto:' + (CFG.email || '') + '?subject=' + encodeURIComponent('SeaFlower inquiry from ' + (fd.get('name') || 'website')) + '&body=' + encodeURIComponent(lines.join('\n'));
-        show('ok', 'Opening your email app with the details filled in. If nothing opens, call or text ' + (CFG.phoneDisplay || '') + '.');
-        return;
-      }
-      btn && (btn.disabled = true);
+      if (!form.checkValidity()) { form.reportValidity(); return; }
       var raw = {}; new FormData(form).forEach(function (v, k) { raw[k] = v; });
-      /* Payload in the shape of the Found Your Florida lead API (foundyourflorida.com/api/leads). */
       var extras = [];
       if (raw.timeline) extras.push('Timeline: ' + raw.timeline);
       if (raw.interest) extras.push('Interest: ' + raw.interest);
       if (raw.builder) extras.push('Builder: ' + raw.builder);
       if (raw.message) extras.push('Message: ' + raw.message);
       extras.push('Page: ' + location.href);
+      if (!endpoint || endpoint.indexOf('YOUR_FORM_ID') !== -1) {
+        /* No endpoint configured: open a pre-filled email so no lead is lost. No conversion event (nothing was confirmed). */
+        var lines0 = ['Name: ' + raw.name, 'Email: ' + raw.email, 'Phone: ' + (raw.phone || '')].concat(extras);
+        location.href = 'mailto:' + (CFG.email || '') + '?subject=' + encodeURIComponent('SeaFlower inquiry from ' + (raw.name || 'website')) + '&body=' + encodeURIComponent(lines0.join('\n'));
+        show('ok', 'Opening your email app with the details filled in. If nothing opens, call or text ' + (CFG.phoneDisplay || '') + '.');
+        return;
+      }
+      form.dataset.sending = '1'; btn && (btn.disabled = true);
+      var isFormSubmit = endpoint.indexOf('formsubmit.co') !== -1;
       var payload;
-      if (endpoint.indexOf('formsubmit.co') !== -1) {
-        /* FormSubmit: emails the submission to the address in the endpoint. */
+      if (isFormSubmit) {
         payload = {
           _subject: 'SeaFlower lead: ' + (raw.name || 'unknown') + ' (' + (raw.interest || 'inquiry') + ')',
           _template: 'table', _captcha: 'false', _replyto: raw.email, _honey: hp ? hp.value : '',
           name: raw.name, email: raw.email, phone: raw.phone || '', timeline: raw.timeline || '', interest: raw.interest || 'SeaFlower',
           builder: raw.builder || '', message: raw.message || '', form: raw.form || 'lead', page: location.href,
           sms_consent: (consent && consent.checked) ? 'yes' : 'no', submitted_at: new Date().toISOString(),
-          utm_source: utm.utm_source || '', utm_medium: utm.utm_medium || '', utm_campaign: utm.utm_campaign || ''
+          utm_source: utm.utm_source || '', utm_medium: utm.utm_medium || '', utm_campaign: utm.utm_campaign || '', gclid: utm.gclid || ''
         };
       } else {
-        /* Found Your Florida lead API shape (foundyourflorida.com/api/leads). */
         payload = {
           name: raw.name, email: raw.email, phone: raw.phone || null,
-          sourcePage: 'buyinginseaflower-' + (raw.form || 'lead'),
-          interestType: raw.interest || 'SeaFlower',
-          communityInterest: 'SeaFlower',
+          sourcePage: 'buyinginseaflower-' + (raw.form || 'lead'), interestType: raw.interest || 'SeaFlower', communityInterest: 'SeaFlower',
           message: '[buyinginseaflower.com] ' + extras.join(' | '),
           utmSource: utm.utm_source || 'buyinginseaflower.com', utmMedium: utm.utm_medium || 'website', utmCampaign: utm.utm_campaign || (raw.form || 'lead'), utmContent: utm.utm_content || location.pathname
         };
       }
       fetch(endpoint, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-        .then(function (r) { if (!r.ok) throw new Error('bad status ' + r.status); return r.json().catch(function () { return {}; }); })
-        .then(function () {
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, body: j }; }); })
+        .then(function (res) {
+          /* Only a confirmed success counts: FormSubmit answers {"success":"true"}; other endpoints must return 2xx. */
+          var confirmed = res.ok && (!isFormSubmit || res.body.success === 'true' || res.body.success === true);
+          if (!confirmed) { throw new Error('unconfirmed'); }
+          form.dataset.sent = '1';
           form.reset();
-          show('ok', form.getAttribute('data-success') || 'Got it — I will reach out shortly. Want to skip the wait? Book a time on the calendar or text me.');
-          track('generate_lead', { form_id: form.id || 'lead', page: location.pathname });
-          var next = form.getAttribute('data-redirect'); if (next) setTimeout(function () { location.href = next; }, 900);
+          show('ok', form.getAttribute('data-success') || 'Got it. Taking you to the next step…');
+          /* GA4 conversion: non-personal parameters only, sent once per confirmed submission, then redirect. */
+          var next = form.getAttribute('data-redirect') || '/thank-you/';
+          var redirected = false;
+          function go() { if (redirected) return; redirected = true; location.href = next; }
+          if (typeof w.gtag === 'function') {
+            w.gtag('event', 'generate_lead', {
+              method: 'website_form', form_id: form.id || 'lead', form_name: form.getAttribute('data-form-name') || 'lead_form',
+              page_path: location.pathname, transport_type: 'beacon', event_callback: go
+            });
+            setTimeout(go, 1200);
+          } else { go(); }
         })
         .catch(function () {
-          /* Never lose a lead: fall back to a pre-filled email. */
+          /* Not confirmed (network, validation or service error): no conversion event; fall back to a pre-filled email. */
           var lines = ['Name: ' + raw.name, 'Email: ' + raw.email, 'Phone: ' + (raw.phone || '')].concat(extras);
           location.href = 'mailto:' + (CFG.email || '') + '?subject=' + encodeURIComponent('SeaFlower inquiry from ' + (raw.name || 'website')) + '&body=' + encodeURIComponent(lines.join('\n'));
           show('ok', 'The form service did not respond, so I opened an email with your details filled in. You can also call or text ' + (CFG.phoneDisplay || '') + '.');
         })
-        .finally(function () { btn && (btn.disabled = false); });
+        .finally(function () { form.dataset.sending = ''; if (form.dataset.sent !== '1') { btn && (btn.disabled = false); } });
     });
     function show(kind, msg) { if (!status) return; status.className = 'form__status is-' + kind; status.textContent = msg; status.setAttribute('role', 'status'); }
   });
+
+  /* ---- Calendly: count only a completed booking, verified by origin, once per booking ---- */
+  function calendlyHandler(e) {
+    if (!e || e.origin !== 'https://calendly.com') return false;
+    var data = e.data;
+    if (!data || data.event !== 'calendly.event_scheduled') return false;
+    var inviteeUri = data.payload && data.payload.invitee && data.payload.invitee.uri;
+    var key = 'bis-booked-' + (inviteeUri ? inviteeUri.split('/').pop() : 'session');
+    try { if (sessionStorage.getItem(key)) return false; sessionStorage.setItem(key, '1'); } catch (err) { if (w.__bisBooked) return false; w.__bisBooked = true; }
+    if (typeof w.gtag === 'function') {
+      w.gtag('event', 'book_appointment', { method: 'calendly', event_type: '30min_strategy_call', page_path: location.pathname, transport_type: 'beacon' });
+    }
+    return true;
+  }
+  if (d.querySelector('.calendly-inline-widget')) { w.addEventListener('message', calendlyHandler); }
+  w.__bisCalendlyHandler = calendlyHandler;   /* exposed for verification only; origin check still applies */
 
   /* ---- outbound + call tracking ---- */
   d.querySelectorAll('a[href^="tel:"]').forEach(function (a) { a.addEventListener('click', function () { track('click_call', { page: location.pathname }); }); });
