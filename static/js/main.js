@@ -196,14 +196,28 @@
       if (raw.builder) extras.push('Builder: ' + raw.builder);
       if (raw.message) extras.push('Message: ' + raw.message);
       extras.push('Page: ' + location.href);
-      var payload = {
-        name: raw.name, email: raw.email, phone: raw.phone || null,
-        sourcePage: 'buyinginseaflower-' + (raw.form || 'lead'),
-        interestType: raw.interest || 'SeaFlower',
-        communityInterest: 'SeaFlower',
-        message: '[buyinginseaflower.com] ' + extras.join(' | '),
-        utmSource: utm.utm_source || 'buyinginseaflower.com', utmMedium: utm.utm_medium || 'website', utmCampaign: utm.utm_campaign || (raw.form || 'lead'), utmContent: utm.utm_content || location.pathname
-      };
+      var payload;
+      if (endpoint.indexOf('formsubmit.co') !== -1) {
+        /* FormSubmit: emails the submission to the address in the endpoint. */
+        payload = {
+          _subject: 'SeaFlower lead: ' + (raw.name || 'unknown') + ' (' + (raw.interest || 'inquiry') + ')',
+          _template: 'table', _captcha: 'false', _replyto: raw.email, _honey: hp ? hp.value : '',
+          name: raw.name, email: raw.email, phone: raw.phone || '', timeline: raw.timeline || '', interest: raw.interest || 'SeaFlower',
+          builder: raw.builder || '', message: raw.message || '', form: raw.form || 'lead', page: location.href,
+          sms_consent: (consent && consent.checked) ? 'yes' : 'no', submitted_at: new Date().toISOString(),
+          utm_source: utm.utm_source || '', utm_medium: utm.utm_medium || '', utm_campaign: utm.utm_campaign || ''
+        };
+      } else {
+        /* Found Your Florida lead API shape (foundyourflorida.com/api/leads). */
+        payload = {
+          name: raw.name, email: raw.email, phone: raw.phone || null,
+          sourcePage: 'buyinginseaflower-' + (raw.form || 'lead'),
+          interestType: raw.interest || 'SeaFlower',
+          communityInterest: 'SeaFlower',
+          message: '[buyinginseaflower.com] ' + extras.join(' | '),
+          utmSource: utm.utm_source || 'buyinginseaflower.com', utmMedium: utm.utm_medium || 'website', utmCampaign: utm.utm_campaign || (raw.form || 'lead'), utmContent: utm.utm_content || location.pathname
+        };
+      }
       fetch(endpoint, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
         .then(function (r) { if (!r.ok) throw new Error('bad status ' + r.status); return r.json().catch(function () { return {}; }); })
         .then(function () {

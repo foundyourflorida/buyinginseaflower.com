@@ -32,7 +32,7 @@ Markdown subset supported in content: `##`/`###` headings, paragraphs, `-` and `
 
 ## Lead capture
 
-Forms post JSON to `SITE["form_endpoint"]`. If it is empty (default), the form opens a pre-filled email to Trenton so no lead is lost. Recommended: point it at the Found Your Florida lead API (`https://foundyourflorida.com/api/leads`, which already accepts cross-origin JSON with `name, email, phone, sourcePage, interestType, communityInterest, message, utm*`) or a Formspree/Basin endpoint. The JS in `static/js/main.js` builds the payload in that shape and falls back to email on any error.
+Forms post JSON to `SITE["form_endpoint"]`, currently FormSubmit (`https://formsubmit.co/ajax/trenton@foundyourflorida.com`), which emails every submission to trenton@foundyourflorida.com. If the endpoint is empty the form falls back to a pre-filled email. The JS also supports the Found Your Florida lead API shape if you point the endpoint at `https://foundyourflorida.com/api/leads`.
 
 Booking uses the Calendly inline widget on `/book/` (`SITE["booking_url"]`). Analytics: GA4 via `SITE["ga_id"]` (events: `generate_lead`, `click_call`, `click_text`, `cta_click`, `video_play`, `faq_open`, `faq_search`, `filter`).
 

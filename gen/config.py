@@ -22,7 +22,7 @@ SITE = {
     "booking_page": "/book/",
     # Lead form endpoint. Formspree/Basin-style JSON POST endpoint. If empty or still a placeholder,
     # forms fall back to opening a pre-filled email so no lead is ever lost.
-    "form_endpoint": "",
+    "form_endpoint": "https://formsubmit.co/ajax/trenton@foundyourflorida.com",
     "ga_id": "G-N1PEN4WMZ7",
     "brokerage": "LPT Realty, LLC",
     "license": "SL3627498",
