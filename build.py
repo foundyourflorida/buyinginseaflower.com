@@ -10,7 +10,7 @@ from gen.html import strip_tags  # noqa: E402
 
 OUT = os.path.join(ROOT, "docs")
 STATIC = os.path.join(ROOT, "static")
-PAGE_MODULES = ["home", "community", "location", "builders", "homes", "costs", "faq", "videos", "blog", "about", "book", "buyers_guide", "guide_print", "legal", "misc"]
+PAGE_MODULES = ["home", "community", "location", "builders", "homes", "costs", "faq", "videos", "blog", "about", "book", "buyers_guide", "guide_print", "legal", "misc", "admin"]
 
 
 def file_hash(*paths):
@@ -59,6 +59,7 @@ def robots():
     return ("User-agent: *\nAllow: /\n\n# AI crawlers are welcome; this site is written to be cited.\n"
             "User-agent: GPTBot\nAllow: /\nUser-agent: OAI-SearchBot\nAllow: /\nUser-agent: ChatGPT-User\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: Claude-SearchBot\nAllow: /\nUser-agent: Claude-User\nAllow: /\nUser-agent: anthropic-ai\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Perplexity-User\nAllow: /\n"
             "User-agent: Google-Extended\nAllow: /\nUser-agent: Applebot-Extended\nAllow: /\nUser-agent: CCBot\nAllow: /\n\n"
+            "User-agent: *\nDisallow: /admin/\nDisallow: /thank-you/\n\n"
             f"Sitemap: {d}/sitemap.xml\n")
 
 
@@ -142,6 +143,12 @@ def main():
     write("llms.txt", llms(pages))
     write("llms-full.txt", llms_full(pages))
     write("feed.xml", feed(pages))
+    import subprocess
+    try:
+        commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, cwd=ROOT).stdout.strip() or "n/a"
+    except Exception:
+        commit = "n/a"
+    write("build-info.json", json.dumps({"built_at": datetime.datetime.now().strftime("%b %d, %Y %I:%M %p"), "commit": commit, "pages": len(pages), "updated": config.SITE["updated"]}))
     write("CNAME", config.SITE["domain"].replace("https://", "").replace("http://", "") + "\n")
     write(".nojekyll", "")
     from gen.components import flower_mark

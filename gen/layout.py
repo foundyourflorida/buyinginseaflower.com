@@ -76,6 +76,9 @@ def head(p):
 <meta name="robots" content="{robots}">
 <meta name="author" content="{SITE['agent']}">
 <meta name="theme-color" content="#FAF0DE">
+{('<meta name="google-site-verification" content="' + esc(SITE['google_site_verification']) + '">') if SITE.get('google_site_verification') else ''}
+{('<meta name="msvalidate.01" content="' + esc(SITE['bing_site_verification']) + '">') if SITE.get('bing_site_verification') else ''}
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
 <meta property="og:type" content="{'article' if p.get('type') == 'article' else 'website'}">
 <meta property="og:site_name" content="{esc(SITE['name'])}">
 <meta property="og:locale" content="{SITE['locale']}">

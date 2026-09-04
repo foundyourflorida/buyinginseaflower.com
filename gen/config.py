@@ -24,6 +24,9 @@ SITE = {
     # forms fall back to opening a pre-filled email so no lead is ever lost.
     "form_endpoint": "https://formsubmit.co/ajax/trenton@foundyourflorida.com",
     "ga_id": "G-N1PEN4WMZ7",
+    # Optional search-engine verification tokens (Search Console can also verify via the GA4 tag, so these may stay empty).
+    "google_site_verification": "",
+    "bing_site_verification": "",
     "brokerage": "LPT Realty, LLC",
     "license": "SL3627498",
     "brokerage_office": "400 S International Parkway, Suite 1020, Lake Mary, FL 32746",

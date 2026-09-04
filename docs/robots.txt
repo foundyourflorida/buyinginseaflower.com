@@ -27,4 +27,8 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
+User-agent: *
+Disallow: /admin/
+Disallow: /thank-you/
+
 Sitemap: https://buyinginseaflower.com/sitemap.xml
