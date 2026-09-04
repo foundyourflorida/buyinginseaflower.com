@@ -318,7 +318,10 @@ def faq_schema(pairs):
 
 def speakable(html_text):
     """Quick-answer block for AI/voice. Splits a leading <strong> sentence from the detail when it is a complete sentence."""
-    m = re.match(r"\s*<strong>(.*?)</strong>\s*(.*)", html_text, re.S)
+    t = html_text.strip()
+    if t.startswith("<p>") and t.endswith("</p>") and t.count("<p>") == 1:
+        t = t[3:-4].strip()
+    m = re.match(r"\s*<strong>(.*?)</strong>\s*(.*)", t, re.S)
     if m:
         lead, rest = m.group(1).strip(), m.group(2).strip()
         complete = lead.endswith((".", ":", "!", "?")) or (rest[:1].isupper())
