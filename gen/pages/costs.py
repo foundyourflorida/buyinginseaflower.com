@@ -161,7 +161,7 @@ def pages():
         ("David Weekley Homes: SeaFlower Classic Homes (HOA, CDD, tax rate)", "https://www.davidweekleyhomes.com/new-homes/fl/sarasota/bradenton/seaflower-classic-homes", "Sep 3, 2026"),
         ("David Weekley Homes: SeaFlower Bungalow Homes", "https://www.davidweekleyhomes.com/new-homes/fl/sarasota/bradenton/seaflower-bungalow-homes", "Sep 3, 2026"),
         ("SeaFlower HOA portal (ICON Management)", F.HOA['portal'], "Sep 3, 2026"),
-        ("Florida Statutes 190.048 (CDD disclosure) and 720.401 (HOA disclosure)", "http://www.leg.state.fl.us/statutes/", "Sep 3, 2026"),
+        ("Florida Statutes 190.048 (CDD disclosure) and 720.401 (HOA disclosure)", "https://www.leg.state.fl.us/statutes/", "Sep 3, 2026"),
     ])}
   </div>
   <aside>{toc(toc_items)}{sidebar_cta("Want the real number for a specific lot?", "Send me the builder, plan and lot and I will build the full monthly picture, incentives included.", "Ask Trenton")}</aside>
