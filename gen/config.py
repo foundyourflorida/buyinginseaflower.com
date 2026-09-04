@@ -24,6 +24,7 @@ SITE = {
     # forms fall back to opening a pre-filled email so no lead is ever lost.
     "form_endpoint": "https://formsubmit.co/ajax/trenton@foundyourflorida.com",
     "ga_id": "G-N1PEN4WMZ7",
+    "ads_id": "AW-18430676225",
     # Optional search-engine verification tokens (Search Console can also verify via the GA4 tag, so these may stay empty).
     "google_site_verification": "",
     "bing_site_verification": "",

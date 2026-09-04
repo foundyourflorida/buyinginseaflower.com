@@ -61,9 +61,10 @@ def head(p):
         snippet = (
             '<script async src="https://www.googletagmanager.com/gtag/js?id=GA_ID"></script>'
             '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());'
-            'gtag("config","GA_ID",{anonymize_ip:true,send_page_view:true,debug_mode:/[?&]ga_debug=1/.test(location.search)||undefined});</script>'
+            'gtag("config","GA_ID",{anonymize_ip:true,send_page_view:true,debug_mode:/[?&]ga_debug=1/.test(location.search)||undefined});'
+            + ("gtag('config', 'ADS_ID');" if SITE.get("ads_id") else "") + '</script>'
         )
-        ga = snippet.replace("GA_ID", SITE["ga_id"])
+        ga = snippet.replace("GA_ID", SITE["ga_id"]).replace("ADS_ID", SITE.get("ads_id", ""))
     article_meta = ""
     if p.get("type") == "article":
         article_meta = (f'<meta property="article:published_time" content="{esc(p.get("published", SITE["updated_iso"]))}">'
