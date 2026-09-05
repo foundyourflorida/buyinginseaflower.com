@@ -23,7 +23,7 @@ SITE = {
     # Lead form endpoint. Formspree/Basin-style JSON POST endpoint. If empty or still a placeholder,
     # forms fall back to opening a pre-filled email so no lead is ever lost.
     "form_endpoint": "https://formsubmit.co/ajax/trenton@foundyourflorida.com",
-    "ga_id": "G-N1PEN4WMZ7",
+    "ga_id": "G-CEZJP71SJH",
     "ads_id": "AW-18430676225",
     # Optional search-engine verification tokens (Search Console can also verify via the GA4 tag, so these may stay empty).
     "google_site_verification": "",

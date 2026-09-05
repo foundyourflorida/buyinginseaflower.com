@@ -42,7 +42,7 @@ Booking uses the Calendly inline widget on `/book/` (`SITE["booking_url"]`). Ana
 
 ## Conversion tracking (GA4 → Google Ads)
 
-GA4 measurement ID `G-N1PEN4WMZ7` is installed once per page in `gen/layout.py` (`gtag.js` + one `config`). Add `?ga_debug=1` to any URL to send events to GA4 DebugView.
+GA4 measurement ID `G-CEZJP71SJH` is installed once per page in `gen/layout.py` (`gtag.js` + one `config`). Add `?ga_debug=1` to any URL to send events to GA4 DebugView.
 
 Two conversion events are emitted from `static/js/main.js`, with non-personal parameters only:
 

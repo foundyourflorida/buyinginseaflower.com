@@ -27,7 +27,7 @@ Goal: Cloudflare Pages serves `docs/` from the GitHub repo `foundyourflorida/buy
 - `https://buyinginseaflower.com/`, `/buyers-guide/`, `/book/`, `/thank-you/` return 200 with a valid certificate.
 - `http://buyinginseaflower.com/costs/?gclid=abc&utm_source=x` → 301 → `https://buyinginseaflower.com/costs/?gclid=abc&utm_source=x`
 - `https://www.buyinginseaflower.com/costs/?gclid=abc` → 301 → `https://buyinginseaflower.com/costs/?gclid=abc`
-- Google tag: one loader, `G-N1PEN4WMZ7` and `AW-18430676225` configured; form and Calendly conversions unchanged (same `main.js`).
+- Google tag: one loader, `G-CEZJP71SJH` and `AW-18430676225` configured; form and Calendly conversions unchanged (same `main.js`).
 
 ## Rollback
 
