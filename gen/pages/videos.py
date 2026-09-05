@@ -1,6 +1,6 @@
 from ..config import SITE
 from ..components import *  # noqa
-from ..content.videos import VIDEOS, LONGFORM, SHORTS, CATEGORIES, by_id
+from ..content.videos import VIDEOS, LONGFORM, SHORTS, CATEGORIES, by_id, structured_upload_date
 from ..html import esc
 
 
@@ -8,7 +8,7 @@ def video_schema(v):
     return {
         "@type": "VideoObject", "name": v["title"], "description": v["blurb"],
         "thumbnailUrl": [f"https://i.ytimg.com/vi/{v['id']}/maxresdefault.jpg", f"https://i.ytimg.com/vi/{v['id']}/hqdefault.jpg"],
-        "uploadDate": v["date"], "duration": f"PT{v['seconds'] // 60}M{v['seconds'] % 60}S",
+        "uploadDate": structured_upload_date(v["date"]), "duration": f"PT{v['seconds'] // 60}M{v['seconds'] % 60}S",
         "embedUrl": f"https://www.youtube-nocookie.com/embed/{v['id']}", "contentUrl": f"https://www.youtube.com/watch?v={v['id']}",
         "author": {"@id": SITE["domain"] + "/#trenton"}, "publisher": {"@id": SITE["domain"] + "/#org"},
     }

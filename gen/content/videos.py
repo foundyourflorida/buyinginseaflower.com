@@ -1,5 +1,8 @@
 """Trenton's YouTube videos used on the site. Regenerate or hand-edit. Thumbnails load from YouTube at runtime (no downloads)."""
 
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 CATEGORIES = [("all", "All videos"), ("seaflower", "SeaFlower tours"), ("builders", "Builders & models"), ("process", "Buying process"), ("money", "Money, fees & incentives"), ("relocation", "Relocation & area"), ("market", "Market")]
 
 VIDEOS = [
@@ -61,6 +64,12 @@ VIDEOS = [
     {"id": 'yQzhGH4lCN0', "title": "Builders are quietly moving upmarket. Here's why.", "date": '2026-06-12', "date_display": 'Jun 12, 2026', "seconds": 29, "duration": '0:29', "cats": ['market'], "short": True, "blurb": 'Builders are quietly moving upmarket. Here’s why it matters for your budget.'},
     {"id": 'GFtGiJU5sB0', "title": 'I Left the Builder Side to Help YOU Buy Smarter — Meet Found Your Florida', "date": '2026-03-13', "date_display": 'Mar 13, 2026', "seconds": 213, "duration": '3:33', "cats": ['about'], "short": False, "blurb": 'Why I left the builder side to represent buyers. Meet Found Your Florida.'},
 ]
+
+
+def structured_upload_date(date):
+    """Return a Google-compatible ISO 8601 datetime in the site's local timezone."""
+    return datetime.fromisoformat(date).replace(tzinfo=ZoneInfo("America/New_York")).isoformat()
+
 
 def by_id(vid):
     for v in VIDEOS:

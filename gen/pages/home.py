@@ -2,7 +2,7 @@ from ..config import SITE
 from ..components import *  # noqa
 from ..content import facts as F
 from ..content.builders_index import BUILDERS, TIER_LABEL
-from ..content.videos import by_id
+from ..content.videos import by_id, structured_upload_date
 from ..content.testimonials import TESTIMONIALS
 from ..html import esc, md
 
@@ -134,7 +134,7 @@ def pages():
 """
     schema = [faq_schema(TEASER_FAQ),
               {"@type": "WebPage", "@id": SITE["domain"] + "/#webpage", "url": SITE["domain"] + "/", "name": "SeaFlower Bradenton buyer's guide", "isPartOf": {"@id": SITE["domain"] + "/#website"}, "about": {"@id": SITE["domain"] + "/#seaflower"}, "dateModified": F.AS_OF_ISO, "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".speakable", ".hero .lead"]}},
-              {"@type": "VideoObject", "name": hero_video["title"], "description": hero_video["blurb"], "thumbnailUrl": f"https://i.ytimg.com/vi/{hero_video['id']}/maxresdefault.jpg", "uploadDate": hero_video["date"], "duration": f"PT{hero_video['seconds']//60}M{hero_video['seconds']%60}S", "embedUrl": f"https://www.youtube-nocookie.com/embed/{hero_video['id']}", "author": {"@id": SITE["domain"] + "/#trenton"}}]
+              {"@type": "VideoObject", "name": hero_video["title"], "description": hero_video["blurb"], "thumbnailUrl": f"https://i.ytimg.com/vi/{hero_video['id']}/maxresdefault.jpg", "uploadDate": structured_upload_date(hero_video["date"]), "duration": f"PT{hero_video['seconds']//60}M{hero_video['seconds']%60}S", "embedUrl": f"https://www.youtube-nocookie.com/embed/{hero_video['id']}", "author": {"@id": SITE["domain"] + "/#trenton"}}]
     return [dict(
         path="/", title="SeaFlower Bradenton Buyer's Guide: Builders, Prices, HOA and CDD Fees (2026)", title_full=False,
         description="The independent guide to buying in SeaFlower, Bradenton FL: all five builders compared, 60+ floor plans and prices, HOA and Lake Flores CDD fees, location, videos and 60+ buyer questions, from a former David Weekley operations manager who now represents buyers.",
